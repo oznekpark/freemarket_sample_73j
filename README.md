@@ -64,10 +64,10 @@ Things you may want to cover:
 ## sns_authentications table
 |Column|Type|Options|
 |------|----|-------|
-|provider	string	null: false|
-|uid	string	null: false, unique: true|
-|token	text	|
-|user	references	null: false, foreign_key: true|
+|provider|	string|	null: false|
+|uid|	string|	null: false, unique: true|
+|token|	text|
+|user|	references|	null: false, foreign_key: true|
 
 ## Association
 - belongs_to :user
