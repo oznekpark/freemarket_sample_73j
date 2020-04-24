@@ -1,0 +1,165 @@
+.wrapper
+  .exhibit
+    .exhibit__header
+      =link_to root_path , class: "exhibit__header__logo" do
+        =image_tag asset_path("logo.png"),class: "exhibit__header__logo__image"
+
+    .exhibit__main
+      .exhibit__main__itemProfile
+        .exhibit__main__itemProfile__inputForm
+        = form_with( model: @item, url: items_path, local: true) do |f|
+          - if flash[:error].present?
+            %ul.errors
+              - flash[:error].each do |e|
+                %li=e
+            .alert.alert-danger
+              %ul
+                - @item.errors.full_messages.each do |msg|
+                  %li= msg
+          .exhibit__main__itemProfile__inputForm__sellImage
+            .exhibit__main__itemProfile__inputForm__sellImage__upload
+              .exhibit__main__itemProfile__inputForm__sellImage__upload__head
+                .notation 出品画像
+                .formRequire 必須
+              .exhibit__main__itemProfile__inputForm__sellImage__upload__attention
+                最大5枚までアップロードできます
+              .exhibit__main__itemProfile__inputForm__sellImage__upload__box
+                .prev-content
+                .label-content
+                  %label{for: "item_item_images_attributes_0_image", class: "label-box", id: "label-box--0"}
+                    %pre.label-box__text-visible クリックしてファイルをアップロード
+                .hidden-content
+                  = f.fields_for :item_images do |i|
+                    = i.file_field :image, class: "hidden-field"
+                    %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][1][image]", id: "item_item_images_attributes_1_image" }
+                    %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][2][image]", id: "item_item_images_attributes_2_image" }
+                    %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][3][image]", id: "item_item_images_attributes_3_image" }
+                    %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][4][image]", id: "item_item_images_attributes_4_image" }
+
+          .exhibit__main__itemProfile__inputForm__sellGoods
+            .exhibit__main__itemProfile__inputForm__sellGoods__name
+              .notation
+                商品名
+              .formRequire
+                必須
+            = f.text_field :name, class: "exhibitInput", placeholder: "40文字まで"
+
+            .exhibit__main__itemProfile__inputForm__sellGoods__description
+              .notation
+                商品の説明
+              .formRequire
+                必須
+            = f.text_area :item_description, class: "exhibitTextarea", placeholder: "商品の説明（必須1,000文字以内）（色、重さ、素材、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"
+            .exhibit__main__itemProfile__inputForm__sellGoods__wordCount
+              0/1000
+
+          .exhibit__main__itemProfile__inputForm__sellDetails
+            .exhibit__main__itemProfile__inputForm__sellDetails__title
+              商品の詳細
+            .exhibit__main__itemProfile__inputForm__sellDetails__formBox
+              .exhibit__main__itemProfile__inputForm__sellDetails__formBox__category
+                .exhibit__main__itemProfile__inputForm__sellDetails__formBox__category__select
+                  .notation
+                    カテゴリー
+                  .formRequire
+                    必須
+                = f.select :category_id, Category.where(ancestry: nil).pluck(:name), { prompt: "選択してください" }, {class: 'exhibitInput', id: 'parent_category'}
+              .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand
+                .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand__write
+                  .notation
+                    ブランド
+                  .formAny
+                    任意
+                = f.collection_select :brand_id, Brand.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput"
+              .exhibit__main__itemProfile__inputForm__sellDetails__formBox__state
+                .exhibit__main__itemProfile__inputForm__sellDetails__formBox__state__select
+                  .notation
+                    商品の状態
+                  .formRequire
+                    必須
+                = f.collection_select :item_condition_id, ItemCondition.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput"
+
+          .exhibit__main__itemProfile__inputForm__delivery
+            .exhibit__main__itemProfile__inputForm__delivery__leftBox
+              .exhibit__main__itemProfile__inputForm__delivery__leftBox__title
+                配送について
+                =link_to "#", class: "questionMark" do
+                  (?)
+            .exhibit__main__itemProfile__inputForm__delivery__formBox  
+              .exhibit__main__itemProfile__inputForm__delivery__formBox__burden
+                .exhibit__main__itemProfile__inputForm__delivery__formBox__burden__select
+                  .notation
+                    配送料の負担
+                  .formRequire
+                    必須
+                = f.collection_select :postage_payer_id, PostagePayer.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput"
+              .exhibit__main__itemProfile__inputForm__delivery__formBox__area
+                .exhibit__main__itemProfile__inputForm__delivery__formBox__area__select
+                  .notation
+                    発送元の地域
+                  .formRequire
+                    必須
+                /= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput" 
+              .exhibit__main__itemProfile__inputForm__delivery__formBox__days
+                .exhibit__main__itemProfile__inputForm__delivery__formBox__days__select
+                  .notation
+                    発送までの日数
+                  .formRequire
+                    必須
+                = f.collection_select :preparation_day_id, PreparationDay.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput"
+
+          .exhibit__main__itemProfile__inputForm__sellPrice
+            .exhibit__main__itemProfile__inputForm__sellPrice__leftBox
+              .exhibit__main__itemProfile__inputForm__sellPrice__leftBox__title
+                価格(￥300〜9,999,999)
+                =link_to "#", class: "questionMark" do
+                  (?)
+            .exhibit__main__itemProfile__inputForm__sellPrice__calculation
+              .exhibit__main__itemProfile__inputForm__sellPrice__calculation__priceForm
+                .exhibit__main__itemProfile__inputForm__sellPrice__calculation__priceForm__amountOfSales
+                  .notation
+                    販売価格
+                  .formRequire
+                    必須
+                = f.text_field :price,class: "exhibitInput", placeholder: "例）300〜9,999,999"
+
+          .exhibit__main__itemProfile__inputForm__warning
+            = f.submit :出品する ,class: "exhibitSubmit1"
+            = link_to "root_path", class: "exhibitSubmit2" do
+              もどる
+            .exhibit__main__itemProfile__inputForm__warning__links
+              %span.exhibit__main__itemProfile__inputForm__warning__links__link
+                禁止されている
+              =link_to "#" do
+                行為
+              %span.exhibit__main__itemProfile__inputForm__warning__links__link
+                および
+              =link_to "#" do
+                出品物
+              %span.exhibit__main__itemProfile__inputForm__warning__links__link
+                を必ずご確認ください。
+              =link_to "#" do
+                偽ブランド品
+              %span.exhibit__main__itemProfile__inputForm__warning__links__link
+                や
+              =link_to "#" do
+                盗品物
+              %span.exhibit__main__itemProfile__inputForm__warning__links__link
+                などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして
+              =link_to "#" do
+                加盟店規約
+              %span.exhibit__main__itemProfile__inputForm__warning__links__link
+                に同意したことになります。
+
+    .exhibit__footer
+      .exhibit__footer__lists
+        =link_to "#", class: "exhibit__footer__lists__list" do
+          プライバシーポリシー
+        =link_to "#", class: "exhibit__footer__lists__list" do
+          Furima利用規約
+        =link_to "#", class: "exhibit__footer__lists__list" do
+          特定商取引に関する表記   
+      =link_to "#" , class: ".exhibit__footer__logo" do
+        =image_tag asset_path("logo.png"),class: "exhibit__footer__logo__image"
+      .exhibit__footer__ending
+        © Furima, Inc.
