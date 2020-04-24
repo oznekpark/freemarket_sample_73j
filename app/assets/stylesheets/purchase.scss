@@ -1,0 +1,166 @@
+.signup-header {
+  text-align: center;
+  padding-top: 30px;
+}
+
+.details{
+  display: block;
+}
+.details-content{
+  width: 700px;
+  margin: 0 auto;
+  background: #fff;
+  border-width: 0;
+  &__head{
+    padding: 16px;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    border-style: solid;
+    border-width: 0;
+    font-weight: bold;
+    border-bottom: 1px solid #efefef;
+  }
+  &__inner {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 24px 16px;
+    &__item{
+      padding: 24px 12.5% 0;
+      max-width: 320px;
+      margin: 0 auto;
+      display: flex;
+      &__image {
+        height: 80px;
+        width: 80px;
+        min-width: 80px;
+      }
+      &__detail {
+        margin-left: 20px;
+        &__itemName {
+          font-size: 14px;
+          line-height: 1.5;
+          text-align: left;
+          padding-top: 6px;
+          &__form {
+            font-weight: bold;
+            width: 250px;
+            padding-top: 12px;
+            &__price {
+              font-size: 9px;
+            }
+            &__fee {
+              font-size: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+  &__table {
+    text-align: center;
+    border-top: 1px solid #efefef;
+    padding: 30px 0;
+  }
+  &__pricecell{
+    font-weight: bold;
+    font-size: 20px;
+    padding: 0 75px;
+  }
+  &__accordion{
+    margin: 24px 0 10px;
+  }
+  &__info{
+    padding: 0 12.5%;
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+  }
+  &__inner{
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__form{
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+  &__user{
+    width: 100%;
+    display: block;
+    margin: 8px 0 0;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  &__fix{
+    display: block;
+    text-align: right;
+    color: #0099e8;
+    width: 100%;
+    a{
+      text-decoration: none;
+    }
+  }
+  &__infotext{
+    margin: 8px 0 0;
+    font-size: 14px;
+    line-height: 1.4;
+    width: 100%;
+    display: block;
+  }
+  &__btnText{
+    line-height: 1.5;
+    font-size: 14px;
+    margin-top: 8px;
+    text-align: center;
+  }
+  &__btn{
+    background: #ea352d;
+    border: 1px solid #ea352d;
+    padding: 17px;
+    margin: 30px 0;
+    width: 60%;
+    color: white;
+    font-weight: bold;
+  }
+}
+.signup-footer {
+  height: 250px;
+  text-align: center;
+  background-color: #272727;
+  color: #fff;
+  padding: 20px 0 10px;
+  &__nav{
+    padding: 30px 0;
+    &__lists__list {
+      padding: 7px 0;
+      font-size: 13px;
+    }
+  }
+  &__logo {
+    margin: 40px auto 0;
+    text-decoration: none;
+    padding-top :20px;
+  }
+  &__bottom {
+    font-size: 10px;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+body{
+  font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
+}
+
+// @media screen and (min-width: 768px){
+//   .signup-header
+//   .details
+//   .signup-footer{
+//     width: 456px;
+//     margin: 0 auto;
+//   }
+// }
