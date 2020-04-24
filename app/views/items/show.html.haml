@@ -1,0 +1,172 @@
+.container
+  .container__item-details
+    %h1.container__item-details__item-name
+      商品名　例：NINTENDO SWITCH
+    .container__item-details__main
+      .container__item-details__main__images
+        .container__item-details__main__images__display
+          画像
+          %ul.container__item-details__main__images__display__up
+            -# - @item.item_imgs.each do |image| みたいな感じで表示せる
+              %li.container__item-details__main__images__display__up__slide-image
+                -# = image_tag image.image_url, size: "300x300"　JSでサムネイルにカーソルがホバーしたときにスライドして表示させる　
+          %ul.container__item-details__main__images__display__down
+            -# "- @item.item_imgs.each do |image| みたいな感じで表示？
+              %li.container__item-details__main__images__display__down__thumbnail-image
+                -# = image_tag image.image_url, size: "60x60"　下段のサムネ
+      %table.container__item-details__main__detail
+        %tbody
+          %tr
+            %th
+              出品者
+            %td
+              ニックネーム
+              -# = link_to @item.user.nickname とか
+              %div.evaluation
+                %div
+                  %i.far.fa-laugh
+                  = rand(100)
+                  -# 評価はuser_evaluationsが入るようになる？
+                %div
+                  %i.fas.far.fa-meh
+                  = rand(100)
+                %div
+                  %i.far.fa-sad-tear
+                  = rand(100)
+          %tr
+            %th
+              カテゴリー
+            %td.category
+              = link_to "" do
+                .category
+                  %span
+                    カテゴリネーム
+              = link_to "" do
+                .category
+                  %i.fas.fa-chevron-right
+                    %span
+                      第二のカテゴリ
+              = link_to "" do
+                .category
+                  %i.fas.fa-chevron-right
+                    %span
+                      第三のカテゴリ
+          %tr
+            %th
+              ブランド
+            %td
+              ブランドネーム
+          %tr
+            %th
+              商品の状態
+            %td
+              商品のコンディション
+              -# item_conditionかな？
+          %tr
+            %th
+              配送料の負担
+            %td
+              送料の有無
+              -# postage_payerかな？
+          %tr
+            %th
+              配送の方法
+            %td
+              らくらくメルカリ便
+              -# postage_typeかな？
+          %tr
+            %th
+              配送元地域
+            %td
+              〜県
+              -# prefecture_codeかな？
+          %tr
+            %th
+              発送日の目安
+            %td
+              〜日で発送
+              -# preparation_dayかな？
+
+    .container__item-details__price
+      %span.container__item-details__price__amount
+        ¥ 3,000 
+
+        
+      %span.container__item-details__price__tax
+        (税込)
+      %span.container__item-details__price__delivery-fee
+        送料込み
+    .container__item-details__message
+      
+      = link_to "購入画面に進む", "#", class: "container__item-details__purchase-screen-button"
+      -# -if文で商品の編集、削除できるようにする　
+        = link_to "商品の編集", edit_item_path, class: "submit-btn submit-btn-red"
+        = link_to "この商品を削除する", item_path, class: "submit-btn submit-btn-gray", method: "DELETE"
+
+
+    .container__item-details__item-description
+      %p.container__item-details__item-description__inner
+        商品紹介文章
+        超安く譲ります
+        -# = simple_format @item.introductionかな？
+    .container__item-details__buttons
+      .container__item-details__buttons__left
+        %button.container__item-details__buttons__left__heart
+          %i.far.fa-heart
+          %span
+            いいね!
+          %span
+            = rand (1000)
+        %button.container__item-details__buttons__left__report
+          %i.far.fa-flag
+          %span
+            不適切な商品の報告
+
+      .container__item-details__buttons__right
+        = link_to "" do
+          %i.fas.fa-lock
+          %span
+            あんしん・あんぜんへの取り組み
+
+  .container__comment
+    .container__comment__container
+      %form.container__comment__container__message-form
+        %p.container__comment__container__message-form__attention
+          相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        %textarea.container__comment__container__message-form__text
+        %button.container__comment__container__message-form__comment-btn
+          %span
+            コメントする
+
+  %ul.container__item-link
+    %li.container__item-link__prev
+      = link_to "" do
+        %i.fas.fa-chevron-left
+        前の商品
+    %li.container__item-link__next
+      = link_to "" do
+        次の商品
+        %i.fas.fa-chevron-right
+        
+  .container__social-media
+    %ul.container__social-media__box
+      %li.container__social-media__box__facebook
+        = link_to "" do
+          %i.fab.fa-facebook-square.fa-3x
+      %li.container__social-media__box__twitter
+        = link_to "" do
+          %i.fab.fa-twitter-square.fa-3x
+      %li.container__social-media__box__line
+        = link_to "" do
+          %i.fab.fa-line.fa-3x
+      %li.container__social-media__box__pinterest
+        = link_to "" do
+          %i.fab.fa-pinterest-square.fa-3x
+
+
+  %navi.container__bread-crumbs
+    %ul.container__bread-crumbs__list
+      %li.container__bread-crumbs__list__mercari
+        = link_to root_path do
+          FURIMA
+          %i.fas.fa-chevron-right

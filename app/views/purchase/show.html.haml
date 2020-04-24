@@ -1,0 +1,81 @@
+.signup-header
+  = link_to "#" do
+    = image_tag "material/logo/logo.png", width: 140, height: 40
+.details
+  .details-content
+    .details-content__head
+      購入内容の確認
+    .details-content__inner
+      .details-content__inner__item
+        .details-content__inner__item__image
+          = image_tag "material/logo/logo.png", width: 80, height: 80
+        .details-content__inner__item__detail
+          .details-content__inner__item__detail__itemName
+            ジャケット
+            .details-content__inner__item__detail__itemName__form
+              %span.details-contet__inner__item__detail__itemName__form__price
+                ¥2,000円(税込み) 
+              %span.details-content__inner__item__detail__itemName__form__fee
+                送料込み
+                -# - if @item.delivery_charge_id == '1'
+                  送料込み
+                -# - else
+                  着払い
+    .details-content__table
+      %span.details-content__pricecell
+        支払い金額
+      %span.details-content__pricecell
+        ¥2,000
+      %ul.details-content__accordion
+        %li.details-content__accordion__parent
+          .details-content__accordion__parent__checkBox
+            %input#box1{:type => "checkbox"}/
+            %label{:for => "box1"} ポイントを使用(所持ポイント:P0)
+    .details-content__info
+      .details-content__inner
+        配送先
+        %address.details-content__user
+          〒 000-0000
+          %br
+          %br
+            住所
+          %br
+            住所
+        = link_to "#", class: 'details-content__fix' do
+          %span 変更する
+          = icon 'fas', 'chevron-right'
+    #details-bottom.details-content__info
+      .details-content__inner
+        支払方法
+        .details-content__infotext
+        - if @default_card_information.blank?
+          %br 
+            未選択です
+        - else
+          -#以下カード情報を表示
+          **** **** **** #{@default_card_information.last4}
+          - exp_month = @default_card_information.exp_month.to_s
+          - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+          = exp_month + " / " + exp_year
+        %br
+        = link_to  "#", class: 'details-content__fix' do
+          %span 変更する
+          = icon 'fas', 'chevron-right'
+    .details-content__btnText
+      = button_tag "購入する", class:"details-content__btn"
+.signup-footer
+  %nav.signup-footer__nav
+    %ul.signup-footer__nav__lists
+      %li.signup-footer__nav__lists__list
+        = link_to '#' do
+          プライバシーポリシー
+      %li.signup-footer__nav__lists__list
+        = link_to '#' do
+          メルカリ利用規約
+      %li.signup-footer__nav__lists__list
+        = link_to '#' do
+          特定商取引に関する表記
+  = link_to "#", class: 'signup-footer__logo' do
+    = image_tag "material/logo/logo-white.png", height: '30', width: '120', class: "signup-footer__logo__tag"
+  .signup-footer__bottom
+    © FURIMA
