@@ -11,5 +11,4 @@ class UsersController < ApplicationController
     # ログアウト画面
     def logout
     end
-    
 end
