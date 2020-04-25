@@ -1,0 +1,41 @@
+-content_for :current_page do
+  %span.current_page
+    %span.current_page__now
+      マイページ
+.user-mypage-wrapper
+  .user-mypage-wrapper__main
+    .user-mypage-wrapper__main__profile
+      .user-mypage-wrapper__main__profile__container
+        .user-mypage-wrapper__main__profile__container__image
+          = image_tag "member_photo_noimage_thumb.png", "alt width":"60", height:"60"
+        .user-mypage-wrapper__main__profile__container__content.bold
+          %h2 
+            ユーザーのニックネーム
+        .user-mypage-wrapper__main__profile__container__status
+          .user-mypage-wrapper__main__profile__container__status__content
+            .user-mypage-wrapper__main__profile__container__status__content__name
+              評価
+            .user-mypage-wrapper__main__profile__container__status__content__number.bold
+              = rand(100)
+              -# user_evaluationを入れる？
+          .user-mypage-wrapper__main__profile__container__status__content
+            .user-mypage-wrapper__main__profile__container__status__content__name__products
+              出品数
+            .user-mypage-wrapper__main__profile__container__status__content__number.bold
+              ユーザーの.item.count
+      .user-mypage-wrapper__main__profile__contents.tabs
+        .tabs
+          %input#notice.user-mypage-wrapper__main__profile__contents__notice{checked: "checked", name: "tab_item", type: "radio"}/
+          %label.tab_item{for: "notice"} お知らせ
+          %input#task{name: "tab_item", type: "radio"}/
+          %label.tab_item.user-mypage-wrapper__main__profile__contents__task{for: "task"} やることリスト
+          #notice_content.tab_content
+            .tab_content_description__task
+              %p 現在お知らせはありません
+            .tab_content_description__content__back
+              .tab_content_description__content__back__message
+                %p 一覧を見る
+          #task_content.tab_content
+            .tab_content_description__task
+              現在やることリストはありません。
+  = render "layouts/user_side_navi"
