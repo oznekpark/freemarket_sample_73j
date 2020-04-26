@@ -2,12 +2,12 @@
   .exhibit
     .exhibit__header
       =link_to root_path , class: "exhibit__header__logo" do
-        =image_tag asset_path("logo.png"),class: "exhibit__header__logo__image"
+        =image_tag "material/logo/logo.png",class: "exhibit__header__logo__image"
 
     .exhibit__main
       .exhibit__main__itemProfile
         .exhibit__main__itemProfile__inputForm
-        = form_with( model: @item, url: items_path, local: true) do |f|
+        = form_with( model: @item, local: true) do |f|
           - if flash[:error].present?
             %ul.errors
               - flash[:error].each do |e|
@@ -26,11 +26,11 @@
               .exhibit__main__itemProfile__inputForm__sellImage__upload__box
                 .prev-content
                 .label-content
-                  %label{for: "item_item_images_attributes_0_image", class: "label-box", id: "label-box--0"}
+                  %label{for: "item_item_imgs_attributes_0_image", class: "label-box", id: "label-box--0"}
                     %pre.label-box__text-visible クリックしてファイルをアップロード
                 .hidden-content
-                  = f.fields_for :item_images do |i|
-                    = i.file_field :image, class: "hidden-field"
+                  = f.fields_for :item_imgs do |i|
+                    = i.file_field :item_img, type: "file", class: "hidden-field"
                     %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][1][image]", id: "item_item_images_attributes_1_image" }
                     %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][2][image]", id: "item_item_images_attributes_2_image" }
                     %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][3][image]", id: "item_item_images_attributes_3_image" }
@@ -49,7 +49,7 @@
                 商品の説明
               .formRequire
                 必須
-            = f.text_area :item_description, class: "exhibitTextarea", placeholder: "商品の説明（必須1,000文字以内）（色、重さ、素材、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"
+            = f.text_area :introduction, class: "exhibitTextarea", placeholder: "商品の説明（必須1,000文字以内）（色、重さ、素材、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"
             .exhibit__main__itemProfile__inputForm__sellGoods__wordCount
               0/1000
 
@@ -77,7 +77,7 @@
                     商品の状態
                   .formRequire
                     必須
-                = f.collection_select :item_condition_id, ItemCondition.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput"
+                = f.collection_select :item_condition_id, ItemCondition.all, :id, :item_condition, { prompt: "選択してください" }, class: "exhibitInput"
 
           .exhibit__main__itemProfile__inputForm__delivery
             .exhibit__main__itemProfile__inputForm__delivery__leftBox
@@ -92,21 +92,21 @@
                     配送料の負担
                   .formRequire
                     必須
-                = f.collection_select :postage_payer_id, PostagePayer.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput"
+                = f.collection_select :postage_payer_id, PostagePayer.all, :id, :postagepayer, { prompt: "選択してください" }, class: "exhibitInput"
               .exhibit__main__itemProfile__inputForm__delivery__formBox__area
                 .exhibit__main__itemProfile__inputForm__delivery__formBox__area__select
                   .notation
                     発送元の地域
                   .formRequire
                     必須
-                /= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput" 
+                -# = f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput" 
               .exhibit__main__itemProfile__inputForm__delivery__formBox__days
                 .exhibit__main__itemProfile__inputForm__delivery__formBox__days__select
                   .notation
                     発送までの日数
                   .formRequire
                     必須
-                = f.collection_select :preparation_day_id, PreparationDay.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput"
+                = f.collection_select :preparation_day_id, PreparationDay.all, :id, :preparation_day_preparation_day_name, { prompt: "選択してください" }, class: "exhibitInput"
 
           .exhibit__main__itemProfile__inputForm__sellPrice
             .exhibit__main__itemProfile__inputForm__sellPrice__leftBox
@@ -160,6 +160,6 @@
         =link_to "#", class: "exhibit__footer__lists__list" do
           特定商取引に関する表記   
       =link_to "#" , class: ".exhibit__footer__logo" do
-        =image_tag asset_path("logo.png"),class: "exhibit__footer__logo__image"
+        =image_tag "material/logo/logo.png",class: "exhibit__footer__logo__image"
       .exhibit__footer__ending
         © Furima, Inc.
