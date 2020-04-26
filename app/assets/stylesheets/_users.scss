@@ -1,0 +1,323 @@
+// マイページ
+.user-mypage-wrapper{
+  font-size: 14px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width:100vw;
+  background-color: $global-back-color;
+  padding-bottom: 40px;
+  padding-top: 40px;
+  &__main{
+    width:700px;
+    float:right;
+    background-color: $normal-white;
+    &__profile{
+      &__container{
+        box-sizing: border-box;      
+        background: url( https://www.mercari.com/jp/assets/img/mypage/user-bg.jpg?45085161 );
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        height:200px;
+        flex-direction: column;
+        @extend %centering;
+        &__image{
+          width:60px;
+          height:60px;
+          img{
+            border-radius: 50%;
+          }
+        }
+        &__content{
+          h2{
+            font-weight: bold;
+            margin-top: 8px;
+          }
+        }
+        &__status{
+          display: flex;
+          margin-top: 8px;
+          &__content{
+            display: flex;
+            &__number{
+              margin-left: 8px;
+            }
+            &__name{
+              &__products{
+                margin-left: 16px;
+              }
+            }
+          }
+        }
+      }
+      &__contents{
+        width: 100%;
+        display: flex;
+        /*タブ切り替え全体のスタイル*/
+        .tabs {
+          margin-top: 50px;
+          background-color: $normal-white;
+          width: 100%;
+          margin: 0 auto;}
+        /*タブのスタイル*/
+        .tab_item {
+          width: calc(100%/2);
+          height: 72px;
+          background-color: $normal-gray;
+          line-height: 72px;
+          font-size: 16px;
+          text-align: center;
+          color: #565656;
+          display: block;
+          float: left;
+          text-align: center;
+          font-weight: bold;
+          transition: all 0.2s ease;
+          &:hover {
+            opacity: 0.75;
+          }
+        }
+        /*ラジオボタンを全て消す*/
+        input[name="tab_item"] {
+          display: none;
+        }
+        /*タブ切り替えの中身のスタイル*/
+        .tab_content {
+          display: none;
+          clear: both;
+          align-content: space-between;
+          .tab_content_description{
+            &__content{
+              box-sizing: border-box;
+              min-height:80px;
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              padding:16px;
+              border-bottom: $normal-gray solid 1px;
+              color: #333;
+              &:hover {
+                background-color: $hover-gray;
+              }    
+              &__image{
+                height: 100%;
+                width: 60px;
+                @extend %centering;
+              }
+              &__body{
+                width:100%;
+                margin:0 40px 0 8px;
+                &__time{
+                  color: #888;
+                }
+              }
+              &__back{
+                box-sizing: border-box;
+                width: 100%;
+                height: 88px;
+                padding: 16px;
+                @extend %centering;
+                &__message{
+                  background-color: $normal-gray;  
+                  width: 100%;
+                  height: 100%;
+                  @extend %centering;
+                  &:hover{
+                    background-color: $global-back-color;
+                  }
+                }
+              }
+            }
+            &__task{
+              box-sizing: border-box;
+              padding:110px 0px; 
+              flex-direction: column;
+              color: rgb(174, 174, 174);
+              @extend %centering;
+            }
+          }
+        }
+      
+        /*選択されているタブのコンテンツのみを表示*/
+        #notice:checked ~ #notice_content,
+        #task:checked ~ #task_content{
+          display: block;
+        }
+        /*選択されているタブのスタイルを変える*/
+        .tabs input:checked + .tab_item {
+          background-color: white;
+          border-top: 2px solid red;
+          box-sizing: border-box;
+        }
+      }
+    }
+    &__box{
+      &__title{        
+        &__inner{
+          padding: 64px;
+          &__content{
+            max-width: 320px;
+            margin: 0 auto;
+            &__btn{
+              background: $normal-red;
+              border: 1px solid $normal-red;
+              color: $normal-white;
+              display: block;
+              width: 100%;
+              line-height: 48px;
+              font-size: 14px;
+              transition: all ease-out .3s;
+              cursor: pointer;
+              text-align: center;
+              overflow: visible;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // サイドメニュー
+  &__navi{
+    width:280px;
+    margin-right: 40px;
+    h3 {
+      font-weight: bold;
+      background-color: $global-back-color;
+    }
+    li{
+      a{
+        box-sizing: border-box;
+        width: 100%;
+        height:48px;
+        padding:16px;
+        border: $global-back-color solid 1px;
+        line-height: 16px;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        text-decoration: none;
+        color: #333;
+        &:hover{
+          background-color: $hover-gray;
+        }
+          i{
+          color: #ccc;
+        }
+      }
+      &:hover{
+        .menu-icon{
+          // 使用するアニメーションの名前（@keyframesの名前）を指定
+          animation-name: moveRight;
+          // アニメーションの再生時間を指定
+          animation-duration:150ms;
+          // アニメーションの速度を指定
+          animation-timing-function: ease;
+          animation-fill-mode: forwards;
+        }
+        @keyframes moveRight{
+          0%{
+            color: #ccc;
+            transform: translate3d(0px, 0px, 0px);
+          }
+          100%{
+            color: black;
+            transform: translate3d(3px, 0px, 0px);
+          }
+        }
+      }
+    }
+    .active{
+      background-color: $normal-gray;
+    }
+    &__merpay{
+      margin-top: 40px;
+    }
+    &__config{
+      margin-top: 40px;
+    }  
+  }
+}
+
+
+// クレジットカード登録画面
+.user-mypage-wrapper__main__credit{
+  width: 100%;
+  @extend %centering;
+  flex-direction: column;
+  background-color: $normal-white;
+  &__title{
+    box-sizing: border-box;
+    width: 100%;
+    height: 50px;
+    padding: 8px 24px;
+    font-size: 24px;
+    font-weight: bold;
+    @extend %centering;
+    border-bottom: 1px $normal-gray solid;
+  }
+  &__content{
+    width: 320px;
+    padding: 64px;
+    @extend %centering;
+    flex-direction: column;
+    border-bottom: 1px solid $normal-gray;
+    &__index{
+      width: 320px;
+      height: 16px;
+      display: flex;
+      justify-content: flex-start;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+    &__btn{
+      box-sizing: border-box;
+      width: 320px;
+      height: 50px;
+      border: 1px solid transparent;
+      margin-bottom: 40px;
+      i{
+        display: inline-block;
+        width: 14px;
+        height: 17.5px;
+        margin-right: 16px;
+      }
+    }
+    &__description{
+      width: 570px;
+      height: calc(179.1px - 16px - 107px);
+      text-align: right;
+      position: relative;
+      border-top: 1px solid $normal-gray;
+      a{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        text-decoration: none;
+        color: $link-text-blue;
+      }
+    }
+  }
+}
+
+
+//各種ボタン設定
+.submit-btn-red{
+  border: none;
+  color: $normal-white;
+  background-color: $normal-red;
+}
+
+.submit-btn{
+  display: inline-block;
+  width: 100%;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+}
+

@@ -1,0 +1,16 @@
+.user-mypage-wrapper
+  .user-mypage-wrapper__main
+    .user-mypage-wrapper__main__credit
+      .user-mypage-wrapper__main__credit__title
+        支払い方法
+      .user-mypage-wrapper__main__credit__content
+        .user-mypage-wrapper__main__credit__content__index
+          %p クレジットカード一覧
+        = link_to '#',class: 'submit-btn submit-btn-red user-mypage-wrapper__main__credit__content__btn' do
+          %i.far.fa-credit-card
+          %span クレジットカードを追加する
+        .user-mypage-wrapper__main__credit__content__description
+          = link_to "" do
+            支払い方法について
+            %i.fa.fa-chevron-right
+  = render "layouts/user_side_navi"  

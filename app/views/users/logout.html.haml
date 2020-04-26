@@ -1,0 +1,8 @@
+.user-mypage-wrapper
+  .user-mypage-wrapper__main
+    .user-mypage-wrapper__main__box
+      .user-mypage-wrapper__main__box__title
+        %form.user-mypage-wrapper__main__box__title__inner
+          .user-mypage-wrapper__main__box__title__inner__content
+            = link_to 'ログアウト', "# ",method: :delete,class: "user-mypage-wrapper__main__box__title__inner__content__btn submit-btn submit-btn-red"
+  = render "layouts/user_side_navi"  
