@@ -29,13 +29,13 @@
                   %label{for: "item_item_images_attributes_0_image", class: "label-box", id: "label-box--0"}
                     %pre.label-box__text-visible クリックしてファイルをアップロード
                 .hidden-content
-                  = f.fields_for :item_images do |i|
-                    = i.file_field :image, class: "hidden-field"
+                  = f.fields_for :item_imgs do |i|
+                    = i.file_field :url, class: "hidden-field"
                     %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][1][image]", id: "item_item_images_attributes_1_image" }
                     %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][2][image]", id: "item_item_images_attributes_2_image" }
                     %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][3][image]", id: "item_item_images_attributes_3_image" }
                     %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][4][image]", id: "item_item_images_attributes_4_image" }
-
+                    
           .exhibit__main__itemProfile__inputForm__sellGoods
             .exhibit__main__itemProfile__inputForm__sellGoods__name
               .notation
@@ -77,8 +77,8 @@
                     商品の状態
                   .formRequire
                     必須
-                = f.collection_select :item_condition_id, ItemCondition.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput"
-
+                = f.collection_select :item_condition_id, ItemCondition.all, :id, :item_condition, { prompt: "選択してください" }, class: "exhibitInput"
+              
           .exhibit__main__itemProfile__inputForm__delivery
             .exhibit__main__itemProfile__inputForm__delivery__leftBox
               .exhibit__main__itemProfile__inputForm__delivery__leftBox__title
@@ -92,21 +92,21 @@
                     配送料の負担
                   .formRequire
                     必須
-                = f.collection_select :postage_payer_id, PostagePayer.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput"
+                = f.collection_select :postage_payer_id, PostagePayer.all, :id, :postagepayer, { prompt: "選択してください" }, class: "exhibitInput"
               .exhibit__main__itemProfile__inputForm__delivery__formBox__area
                 .exhibit__main__itemProfile__inputForm__delivery__formBox__area__select
                   .notation
                     発送元の地域
                   .formRequire
                     必須
-                /= f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput" 
+                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput" 
               .exhibit__main__itemProfile__inputForm__delivery__formBox__days
                 .exhibit__main__itemProfile__inputForm__delivery__formBox__days__select
                   .notation
                     発送までの日数
                   .formRequire
                     必須
-                = f.collection_select :preparation_day_id, PreparationDay.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput"
+                = f.collection_select :preparation_day_id, PreparationDay.all, :id, :preparation_day_name, { prompt: "選択してください" }, class: "exhibitInput"
 
           .exhibit__main__itemProfile__inputForm__sellPrice
             .exhibit__main__itemProfile__inputForm__sellPrice__leftBox
