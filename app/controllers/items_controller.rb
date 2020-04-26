@@ -19,6 +19,7 @@ class ItemsController < ApplicationController
       :name, 
       :price,
       :introduction,
+      :
       [item_imgs_attributes: [:image]]
     )
 	end
