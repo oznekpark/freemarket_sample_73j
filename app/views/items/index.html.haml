@@ -6,9 +6,9 @@
           = link_to root_path, data:{"turbolinks" => false} do
             =image_tag asset_path("logo.png"), class: "header-image"
         .header__box__upper__search
-          %form{"accept-charset" => "UTF-8", :action => "#", :method => "get"}
-          %input{:name => "utf8", :type => "hidden", :value => "✓"}/
-          %input#searchInput.header__box__upper__search--input{:placeholder => "キーワードから探す"}/
+          %form{content:"accept-charset = UTF-8", action: "#", method: "get"}
+          %input{name: "utf8", type: "hidden", value: "✓"}/
+          %input#searchInput.header__box__upper__search--input{placeholder: "キーワードから探す"}/
           %button{type: "submit", class: 'header__box__upper__search--btn'} 
             = icon('fas', 'search', class: 'search-icon')
 
