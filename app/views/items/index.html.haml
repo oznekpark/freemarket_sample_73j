@@ -17,7 +17,7 @@
           .header__box__navi__left__category
             カテゴリ
             %ul.category1
-              -# - @parents.each do |parent|　後から使用します
+              - @parents.each do |parent|
                 %li.parent__list
                   = link_to parent.name
                   %ul.category2
