@@ -1,7 +1,7 @@
 .container
   .container__item-details
     %h1.container__item-details__item-name
-      商品名　例：NINTENDO SWITCH
+      = @item.name
     .container__item-details__main
       .container__item-details__main__images
         .container__item-details__main__images__display
@@ -19,9 +19,10 @@
           %tr
             %th
               出品者
+              = @item.seller.nickname
             %td
               ニックネーム
-              -# = link_to @item.user.nickname とか
+              = @item.seller.nickname
               %div.evaluation
                 %div
                   %i.far.fa-laugh
@@ -39,57 +40,58 @@
             %td.category
               = link_to "" do
                 .category
-                  %span
-                    カテゴリネーム
+                  %i.fas.fa-chevron-right
+                    %span
+                      = @item.category.root.name 
               = link_to "" do
                 .category
                   %i.fas.fa-chevron-right
                     %span
-                      第二のカテゴリ
+                      = @item.category.parent.name 
               = link_to "" do
                 .category
                   %i.fas.fa-chevron-right
                     %span
-                      第三のカテゴリ
+                      = @item.category.name 
           %tr
             %th
               ブランド
             %td
-              ブランドネーム
+              = @item.brand
           %tr
             %th
               商品の状態
             %td
-              商品のコンディション
+              = @item.item_condition.item_condition
               -# item_conditionかな？
           %tr
             %th
               配送料の負担
             %td
-              送料の有無
+              = @item.postage_payer.postagepayer
               -# postage_payerかな？
           %tr
             %th
               配送の方法
             %td
-              らくらくメルカリ便
+              = @item.postage_type.postage_type
               -# postage_typeかな？
           %tr
             %th
               配送元地域
             %td
-              〜県
+              = @item.prefecture.name
               -# prefecture_codeかな？
           %tr
             %th
               発送日の目安
             %td
-              〜日で発送
+              = @item.preparation_day.preparation_day_name
               -# preparation_dayかな？
 
     .container__item-details__price
       %span.container__item-details__price__amount
-        ¥ 3,000 
+        = @item.price
 
         
       %span.container__item-details__price__tax
@@ -106,9 +108,7 @@
 
     .container__item-details__item-description
       %p.container__item-details__item-description__inner
-        商品紹介文章
-        超安く譲ります
-        -# = simple_format @item.introductionかな？
+        = simple_format @item.introduction
     .container__item-details__buttons
       .container__item-details__buttons__left
         %button.container__item-details__buttons__left__heart
