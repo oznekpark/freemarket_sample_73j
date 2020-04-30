@@ -26,11 +26,16 @@
               .exhibit__main__itemProfile__inputForm__sellImage__upload__box
                 .prev-content
                 .label-content
-                  = f.label :item_imgs, class: "label-box", id: "label-box--0" do
+                  %label{for: "item_item_imgs_attributes_0_image", class: "label-box", id: "label-box--0"}
                     %pre.label-box__text-visible クリックしてファイルをアップロード
-                .hidden-content
-                  = f.file_field :item_imgs, class: "hidden-field", multiple: true do
-                    商品画像
+            .hidden-content
+              = f.fields_for :item_imgs do |i|
+                = i.file_field :url, class: "hidden-field"
+                %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][1][image]", id: "item_item_images_attributes_1_image" }
+                %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][2][image]", id: "item_item_images_attributes_2_image" }
+                %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][3][image]", id: "item_item_images_attributes_3_image" }
+                %input{class:"hidden-field", type: "file", name: "item[item_images_attributes][4][image]", id: "item_item_images_attributes_4_image" }
+                    
           .exhibit__main__itemProfile__inputForm__sellGoods
             .exhibit__main__itemProfile__inputForm__sellGoods__name
               .notation
@@ -38,16 +43,14 @@
               .formRequire
                 必須
             = f.text_field :name, class: "exhibitInput", placeholder: "40文字まで"
-
             .exhibit__main__itemProfile__inputForm__sellGoods__description
               .notation
                 商品の説明
               .formRequire
                 必須
-            = f.text_area :item_description, class: "exhibitTextarea", placeholder: "商品の説明（必須1,000文字以内）（色、重さ、素材、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"
+            = f.text_area :introduction, class: "exhibitTextarea", placeholder: "商品の説明（必須1,000文字以内）（色、重さ、素材、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"
             .exhibit__main__itemProfile__inputForm__sellGoods__wordCount
               0/1000
-
           .exhibit__main__itemProfile__inputForm__sellDetails
             .exhibit__main__itemProfile__inputForm__sellDetails__title
               商品の詳細
@@ -58,7 +61,7 @@
                     カテゴリー
                   .formRequire
                     必須
-                = f.select :category_id, Category.where(ancestry: nil).pluck(:name), { prompt: "選択してください" }, {class: 'exhibitInput', id: 'parent_category'}
+                = f.collection_select :category_id, Category.all, :id, :name, { prompt: "選択してください" }, {class: 'exhibitInput', id: 'parent_category'}
               .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand
                 .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand__write
                   .notation
@@ -66,6 +69,20 @@
                   .formAny
                     任意
                 = f.collection_select :brand_id, Brand.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput"
+              .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand
+                .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand__write
+                  .notation
+                    サイズ
+                  .formRequire
+                    必須
+                = f.collection_select :size_id, Size.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput"
+              .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand
+                .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand__write
+                  .notation
+                    配送方法
+                  .formRequire
+                    必須
+                = f.collection_select :postage_type_id, PostageType.all, :id, :postage_type, { prompt: "選択してください" }, class: "exhibitInput"
               .exhibit__main__itemProfile__inputForm__sellDetails__formBox__state
                 .exhibit__main__itemProfile__inputForm__sellDetails__formBox__state__select
                   .notation
@@ -94,7 +111,7 @@
                     発送元の地域
                   .formRequire
                     必須
-                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput" 
+                = f.collection_select :prefecture_code, Prefecture.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput" 
               .exhibit__main__itemProfile__inputForm__delivery__formBox__days
                 .exhibit__main__itemProfile__inputForm__delivery__formBox__days__select
                   .notation
