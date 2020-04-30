@@ -86,7 +86,6 @@
             %td
               〜日で発送
               -# preparation_dayかな？
-
     .container__item-details__price
       %span.container__item-details__price__amount
         ¥ 3,000 
@@ -102,8 +101,6 @@
       -# -if文で商品の編集、削除できるようにする　
         = link_to "商品の編集", edit_item_path, class: "submit-btn submit-btn-red"
         = link_to "この商品を削除する", item_path, class: "submit-btn submit-btn-gray", method: "DELETE"
-
-
     .container__item-details__item-description
       %p.container__item-details__item-description__inner
         商品紹介文章

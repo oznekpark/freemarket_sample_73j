@@ -27,3 +27,4 @@
 /config/master.key
 /app/views/items/.DS_Store
 config/credentials.yml.enc
+public/uploads/item_img/
