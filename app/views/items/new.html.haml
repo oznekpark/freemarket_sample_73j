@@ -61,7 +61,7 @@
                     カテゴリー
                   .formRequire
                     必須
-                = f.collection_select :category_id, Category.all, :id, :name, { prompt: "選択してください" }, {class: 'exhibitInput', id: 'parent_category'}
+                = f.select :category_id, Category.where(ancestry: nil).pluck(:name), { prompt: "選択してください" }, {class: 'exhibitInput', id: 'parent_category'}
               .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand
                 .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand__write
                   .notation
@@ -111,7 +111,7 @@
                     発送元の地域
                   .formRequire
                     必須
-                = f.collection_select :prefecture_code, Prefecture.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput" 
+                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, { prompt: "選択してください" }, class: "exhibitInput" 
               .exhibit__main__itemProfile__inputForm__delivery__formBox__days
                 .exhibit__main__itemProfile__inputForm__delivery__formBox__days__select
                   .notation

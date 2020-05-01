@@ -1,4 +1,6 @@
 class PostageType < ActiveHash::Base
+  include ActiveHash::Associations
+  has_many :items
   self.data = [
     {id: 1, postage_type: '小型サイズ - ネコポス（らくらくメルカリ便）
     '}, {id: 2, postage_type: '小型サイズ（A4）- ゆうパケット（ゆうゆうメルカリ便）'}, {id: 3, postage_type: 'ゆうメール（着払いあり）'},
