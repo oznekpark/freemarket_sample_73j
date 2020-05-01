@@ -18,7 +18,7 @@ class User < ApplicationRecord
   VALID_NAME_REGEX = /\A[一-龥ぁ-ん]/
   VALID_KANA_REGEX = /\A[ぁ-んー－]+\z/
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :nickname,           presence: true
+  validates :nickname, :birth_year, :birth_year, :birth_month, :birth_day,           presence: true
   validates :first_name,         presence: true, format: { with: VALID_NAME_REGEX }
   validates :family_name,        presence: true, format: { with: VALID_NAME_REGEX }
   validates :first_name_kana,    presence: true, format: { with: VALID_KANA_REGEX }
@@ -26,7 +26,4 @@ class User < ApplicationRecord
   validates :email,              presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
   validates :password,           presence: true, length: { minimum: 7 }
   validates :encrypted_password, presence: true, length: { minimum: 7 }
-  validates :birth_year,         presence: true
-  validates :birth_month,        presence: true
-  validates :birth_day,          presence: true
 end
