@@ -2,12 +2,13 @@ class CreditCardsController < ApplicationController
   require "payjp"
   before_action :set_card
 
+  def show
+  end
+
   def new # カードの登録画面。送信ボタンを押すとcreateアクションへ。
     card = Card.where(user_id: current_user.id).first
     redirect_to action: "index" if card.present?
   end
-
- # indexアクションはここでは省略
 
   def create #PayjpとCardのデータベースを作成
     Payjp.api_key = Rails.application.credentials.dig(:payjp, :PAYJP_SECRET_KEY)
@@ -29,6 +30,12 @@ class CreditCardsController < ApplicationController
         redirect_to :create
       end
     end
+  end
+
+  def edit
+  end
+
+  def updata
   end
 
   private

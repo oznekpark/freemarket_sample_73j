@@ -9,15 +9,15 @@
       .details-content__inner
         .details-content__inner__item
           .details-content__inner__item__image
-            = @item.item_imgs.url, width: 80, height: 80
+            = image_tag @item_img.url, width: 80, height: 80
           .details-content__inner__item__detail
             .details-content__inner__item__detail__itemName
               = @item.name
               .details-content__inner__item__detail__itemName__form
                 %span.details-contet__inner__item__detail__itemName__form__price
-                  = "#{convertToJPY(@product.price)}円"
+                  = "#{convertToJPY(@item.price)}円"
                 %span.details-content__inner__item__detail__itemName__form__fee
-                  - if @item.delivery_charge_id == '1'
+                  - if @item.postage_payer_id == '1'
                     送料込み
                   - else
                     着払い
@@ -25,7 +25,7 @@
         %span.details-content__pricecell
           支払い金額
         %span.details-content__pricecell
-          = "#{convertToJPY(@product.price)}円"
+          = "#{convertToJPY(@item.price)}円"
         %ul.details-content__accordion
           %li.details-content__accordion__parent
             .details-content__accordion__parent__checkBox
@@ -55,11 +55,11 @@
           - else
             -#以下カード情報を表示
             **** **** **** #{@default_card_information.last4}
-            - exp_month = @default_card_information.exp_month.to_s
-            - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-            = exp_month + " / " + exp_year
+            - expiration_month = @default_card_information.expiration_month.to_s
+            - expiration_year = @default_card_information.expiration_year.to_s.slice(2,3)
+            = expiration_month + " / " + expiration_year
           %br
-          = link_to  credit_register_users_path, class: 'details-content__fix' do
+          = link_to credit_register_users_path, class: 'details-content__fix' do
             %span 変更する
             = icon 'fas', 'chevron-right'
       .details-content__btnText

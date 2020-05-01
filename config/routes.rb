@@ -1,20 +1,33 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: "users/sessions",
   }
+  devise_scope :user do
+    get 'sending_destinations', to: 'users/registrations#new_sending_destination'
+    post 'sending_destinations', to: 'users/registrations#create_sending_destination'
+  end
   root "items#index"
 
   # スプリントレビューのためにitem_showを一時的に設定しています
   resources :items do
     collection do
       get 'item_show'
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+    resources :purchases, only: :show do
+      collection do
+        post 'pay'
+        get 'complete'
+      end
     end
   end
 
-  # 本当はitemにネストする感じだと思いますが、スプリントレビューのため一時的にここに設定。
-  resources :purchases
-  resources :credit_cards
+  resources :credit_cards, except: :index do
+    collection do
+      post 'pay'
+    end
+  end
 
   resources :users do
     collection do

@@ -97,7 +97,7 @@
         送料込み
     .container__item-details__message
       
-      = link_to "購入画面に進む", new_purchase_path , class: "container__item-details__purchase-screen-button"
+      = link_to "購入画面に進む", "#", class: "container__item-details__purchase-screen-button"
       -# -if文で商品の編集、削除できるようにする
         = link_to "商品の編集", edit_item_path, class: "submit-btn submit-btn-red"
         = link_to "この商品を削除する", item_path, class: "submit-btn submit-btn-gray", method: "DELETE"
