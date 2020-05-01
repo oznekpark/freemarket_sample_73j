@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations',
-    sessions: "users/sessions",
   }
+  devise_scope :user do
+    get 'sending_destinations', to: 'users/registrations#new_sending_destination'
+    post 'sending_destinations', to: 'users/registrations#create_sending_destination'
+  end
   root "items#index"
 
   # スプリントレビューのためにitem_showを一時的に設定しています
