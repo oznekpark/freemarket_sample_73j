@@ -108,7 +108,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_143051) do
     t.string "destination_first_name_kana", null: false
     t.string "destination_family_name_kana", null: false
     t.integer "post_code", null: false
-    t.integer "prefecture_code", null: false
+    t.integer "prefecture_id", null: false
     t.string "city", null: false
     t.string "house_number", null: false
     t.string "building_name"
@@ -147,6 +147,14 @@ ActiveRecord::Schema.define(version: 2020_04_29_143051) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "nickname", null: false
+    t.string "first_name", null: false
+    t.string "family_name", null: false
+    t.string "first_name_kana", null: false
+    t.string "family_name_kana", null: false
+    t.integer "birth_year", null: false
+    t.integer "birth_month", null: false
+    t.integer "birth_day", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
