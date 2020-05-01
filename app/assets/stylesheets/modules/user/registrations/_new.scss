@@ -60,164 +60,167 @@ a {
   width: 100%;
 }
 
-.signup-header {
-  text-align: center;
-  padding-top: 30px;
-  background-color: #f5f5f5;
-}
-.signup-container {
-  font-family: 'arial';
-  background-color: #f5f5f5;
-  .signup-main {
-    color: #333;
-    background-color: white;
-    width: 700px;
-    margin: 0 auto;
-    .title{
-      height: 90px;
-      line-height: 90px;
-      background-color: #fff;
-      font-size: 22px;
-      font-weight: bold;
-      text-align: center;
-      border-bottom: solid 1px rgb(239, 239, 239);
-    }
-    .main{
+.wrapper {
+  height: 100vh;
+  .signup-header {
+    text-align: center;
+    padding-top: 30px;
+    background-color: #f5f5f5;
+  }
+  .signup-container {
+    font-family: 'arial';
+    background-color: #f5f5f5;
+    .signup-main {
+      color: #333;
       background-color: white;
-      .input{
-        font-size: 14px;
-        height: 100%;
-        width: 343px;
-        margin: 0 auto;
-        padding-bottom: 20px;
-        &__nickname{
-          @include name();
-          &__text{
-            @include text();
+      width: 700px;
+      margin: 0 auto;
+      .title{
+        height: 90px;
+        line-height: 90px;
+        background-color: #fff;
+        font-size: 22px;
+        font-weight: bold;
+        text-align: center;
+        border-bottom: solid 1px rgb(239, 239, 239);
+      }
+      .main{
+        background-color: white;
+        .input{
+          font-size: 14px;
+          height: 100%;
+          width: 343px;
+          margin: 0 auto;
+          padding-bottom: 20px;
+          &__nickname{
+            @include name();
+            &__text{
+              @include text();
+            }
+            &__form{
+              @include form();
+            }
           }
-          &__form{
-            @include form();
-          }
-        }
-        &__email{
-          @include name();
-          &__text{
-            @include text();
-          }
-          &__form{
-            @include form();
-          }
+          &__email{
+            @include name();
+            &__text{
+              @include text();
+            }
+            &__form{
+              @include form();
+            }
 
-        }
-        &__password{
-          @include name();
-          &__text{
-            @include text();
           }
-          &__form{
-            @include form();
-          }
+          &__password{
+            @include name();
+            &__text{
+              @include text();
+            }
+            &__form{
+              @include form();
+            }
 
-        }
-        &__name{
-          @include name();
-          &__title{
-            @include text();
           }
-          &__description{
-            margin-bottom: 20px;
-          }
-          &__text{
-            @include text();
-          }
-          &__fullname{
-            @include fullname();
-            &__first_name{
-              @include form();
-              margin-right: 5px;
+          &__name{
+            @include name();
+            &__title{
+              @include text();
             }
-            &__last_name{
-              @include form();
+            &__description{
+              margin-bottom: 20px;
             }
-          }
-        }
-        &__kana{
-          @include name();
-          &__text{
-            @include text();
-          }
-          &__fullname{
-            @include fullname();
-            &__first_kana{
-              @include form();
-              margin-right: 5px;
+            &__text{
+              @include text();
             }
-            &__last_kana{
-              @include form();
+            &__fullname{
+              @include fullname();
+              &__first_name{
+                @include form();
+                margin-right: 5px;
+              }
+              &__last_name{
+                @include form();
+              }
             }
           }
-        }
-        &__birthday{
-          &__text{
-            margin-bottom: 0px;
-          }
-          &__select{
-            width: 100%;
-            display: flex;
-            justify-content: flex-start;
-            .birth_year{
-              @include birth();
+          &__kana{
+            @include name();
+            &__text{
+              @include text();
             }
-            .birth_month{
-              @include birth();
-            }
-            .birth_day{
-              @include birth();
+            &__fullname{
+              @include fullname();
+              &__first_kana{
+                @include form();
+                margin-right: 5px;
+              }
+              &__last_kana{
+                @include form();
+              }
             }
           }
-        }
-        &__submit{
-          margin-top: 20px;
-          margin-bottom: 10px;
-          &__text{
-            margin-bottom: 20px;
+          &__birthday{
+            &__text{
+              margin-bottom: 0px;
+            }
+            &__select{
+              width: 100%;
+              display: flex;
+              justify-content: flex-start;
+              .birth_year{
+                @include birth();
+              }
+              .birth_month{
+                @include birth();
+              }
+              .birth_day{
+                @include birth();
+              }
+            }
           }
-          &__description{
-            margin-bottom: 20px;
+          &__submit{
+            margin-top: 20px;
+            margin-bottom: 10px;
+            &__text{
+              margin-bottom: 20px;
+            }
+            &__description{
+              margin-bottom: 20px;
+            }
           }
         }
       }
     }
   }
-}
 
-.field_with_errors {
-  display: contents;
-}
-.error{
-  display: none;
-}
+  .field_with_errors {
+    display: contents;
+  }
+  .error{
+    display: none;
+  }
 
-.signup-footer {
-  height: 250px;
-  text-align: center;
-  background-color: #f5f5f5;
-  padding: 20px 0 10px;
-  &__nav{
-    padding: 30px 0;
-    &__lists__list {
-      padding: 7px 0;
-      font-size: 13px;
-      list-style: none;
+  .signup-footer {
+    height: 250px;
+    text-align: center;
+    background-color: #f5f5f5;
+    padding: 20px 0 10px;
+    &__nav{
+      padding: 30px 0;
+      &__lists__list {
+        padding: 7px 0;
+        font-size: 13px;
+        list-style: none;
+      }
     }
-  }
-  &__logo {
-    margin: 40px auto 0;
-    text-decoration: none;
-    padding-top :20px;
-  }
-  &__bottom {
-    font-size: 10px;
-    color: black;
+    &__logo {
+      margin: 40px auto 0;
+      text-decoration: none;
+      padding-top :20px;
+    }
+    &__bottom {
+      font-size: 10px;
+      color: black;
+    }
   }
 }
