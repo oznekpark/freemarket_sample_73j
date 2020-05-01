@@ -1,0 +1,53 @@
+a {
+  text-decoration: none;
+}
+
+.wrapper {
+  height: 100vh;
+  .single-container {
+    font-family: 'arial';
+    background-color: #f5f5f5;
+    .single-main {
+      color: #333;
+      background-color: white;
+      width: 700px;
+      margin: 0 auto;
+      .title{
+        height: 90px;
+        line-height: 90px;
+        background-color: #fff;
+        font-size: 22px;
+        font-weight: bold;
+        text-align: center;
+        border-bottom: solid 1px rgb(239, 239, 239);
+      }
+      .main{
+        background-color: white;
+        .box{
+          height: 100%;
+          width: 343px;
+          margin: 0 auto;
+          padding-bottom: 20px;
+          .text{
+            margin: 20px 0;
+            height: 45px;
+            font-size: 18px;
+            text-align: center;
+          }
+          .submit{
+            margin-bottom: 20px;
+            .btn{
+              background-color: #3ccace;
+              color: white;
+              display: inline-block;
+              text-decoration: none;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -14,7 +14,7 @@ CarrierWave.configure do |config|
       aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
       region: 'ap-northeast-1'
     }
-  config.fog_directory  = 'kenzobucket'
-  config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/kenzobucket'
+  config.fog_directory  = 'frema73j'
+  config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/frema73j'
   end
 end
