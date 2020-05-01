@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   # 本当はitemにネストする感じだと思いますが、スプリントレビューのため一時的にここに設定。
   resources :purchases
+  resources :credit_cards
 
   resources :users do
     collection do
