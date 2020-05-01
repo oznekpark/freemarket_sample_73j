@@ -1,0 +1,34 @@
+- if item.buyer_id.nil?
+  .pickup-container__product-box__product-lists__product-list
+    = link_to item_path(item), data:{"turbolinks" => false}, class: "line" do
+      .pickup-container__product-box__product-lists__product-list__img
+        = image_tag item.first_image.url.url, class: "img_k"
+      .body
+        .body__name
+          = item.name
+        %ul.body__details
+          %li.body__details__price
+            = item.price
+            円
+          %li.body__details__star
+            ★0
+        .body__tax
+          (税込)
+- else
+  .pickup-container__product-box__product-lists__product-list
+    = link_to item_path(item), data:{"turbolinks" => false}, class: "line" do
+      .pickup-container__product-box__product-lists__product-list__img
+        = image_tag item.first_image.image.url, class: "img_k"
+      .sold-cover
+      %p.sold sold
+      .body
+        .body__name
+          = item.name
+        %ul.body__details
+          %li.body__details__price
+            = item.price
+            円
+          %li.body__details__star
+            ★0
+        .body__tax
+          (税込)
