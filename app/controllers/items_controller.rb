@@ -1,11 +1,12 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only:[:show,:destroy]
 
   def index
     @parents = Category.where(ancestry: nil)
+    @items = Item.includes(:item_imgs).order("created_at DESC")
   end
 
-  def item_show
-  end
+  
 
   def new
     @item = Item.new
@@ -24,7 +25,15 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    
+  end
+
+  def destroy
+    if @item.seller_id == current_user.id && @item.destroy
+      redirect_to root_path
+    else
+      render "items/show"
+    end
   end
 
   def set_parents
@@ -42,6 +51,11 @@ class ItemsController < ApplicationController
   private
   def item_params
     params.require(:item).permit(:name, :introduction, :category_id, :brand_id, :size_id, :postage_type_id, :item_condition_id, :postage_payer_id, :prefecture_id, :preparation_day_id, :price, :seller_id, :buyer_id, item_imgs_attributes: [:url])
+  end
+  
+
+  def set_item
+    @item = Item.find(params[:id])
   end
   
 end

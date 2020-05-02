@@ -5,11 +5,10 @@
     .container__item-details__main
       .container__item-details__main__images
         .container__item-details__main__images__display
-          画像
           %ul.container__item-details__main__images__display__up
             - @item.item_imgs.each do |image|
               %li.container__item-details__main__images__display__up__slide-image
-                = image_tag image.url.url, size: "300x300"
+                = image_tag image.url.url, size: "280x400"
           %ul.container__item-details__main__images__display__down
             - @item.item_imgs.each do |image|
               %li.container__item-details__main__images__display__down__thumbnail-image
@@ -118,7 +117,13 @@
           %i.far.fa-flag
           %span
             不適切な商品の報告
-
+        - if @item.buyer_id != nil && current_user.id == @item.seller_id
+          .sellerSelect
+            = link_to '商品の削除', item_path(@item.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'seller__delete'
+        - elsif user_signed_in? && current_user.id == @item.seller_id
+          .sellerSelect
+            = link_to '商品の編集', edit_item_path(@item.id), data:{"turbolinks" => false}, class: 'seller__edit'
+            = link_to '商品の削除', item_path(@item.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'seller__delete'
       .container__item-details__buttons__right
         = link_to "" do
           %i.fas.fa-lock
