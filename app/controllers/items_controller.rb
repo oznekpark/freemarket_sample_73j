@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  
+  before_action :set_item, only:[:show,:destroy]
 
   def index
     @parents = Category.where(ancestry: nil)
@@ -25,19 +25,16 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    
   end
 
   def destroy
-    @item = Item.find(params[:id])
-  if @item.seller_id == current_user.id
-    if @item.destroy
+    if @item.seller_id == current_user.id && @item.destroy
       redirect_to root_path
     else
       render "items/show"
     end
   end
-end
 
   def set_parents
     @parents = Category.where(ancestry: nil)
@@ -57,5 +54,8 @@ end
   end
   
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
   
 end
