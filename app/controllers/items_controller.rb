@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+
   def index
     @parents = Category.where(ancestry: nil)
   end
@@ -22,6 +23,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    @item = Item.find(params[:id])
+  end
+
   def set_parents
     @parents = Category.where(ancestry: nil)
   end
@@ -38,6 +43,5 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :introduction, :category_id, :brand_id, :size_id, :postage_type_id, :item_condition_id, :postage_payer_id, :prefecture_id, :preparation_day_id, :price, :seller_id, :buyer_id, item_imgs_attributes: [:url])
   end
-
   
 end

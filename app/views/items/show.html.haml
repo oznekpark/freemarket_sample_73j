@@ -7,13 +7,13 @@
         .container__item-details__main__images__display
           画像
           %ul.container__item-details__main__images__display__up
-            -# - @item.item_imgs.each do |image| みたいな感じで表示せる
+            - @item.item_imgs.each do |image|
               %li.container__item-details__main__images__display__up__slide-image
-                -# = image_tag image.image_url, size: "300x300"　JSでサムネイルにカーソルがホバーしたときにスライドして表示させる　
+                = image_tag image.url.url, size: "300x300"
           %ul.container__item-details__main__images__display__down
-            -# "- @item.item_imgs.each do |image| みたいな感じで表示？
+            - @item.item_imgs.each do |image|
               %li.container__item-details__main__images__display__down__thumbnail-image
-                -# = image_tag image.image_url, size: "60x60"　下段のサムネ
+                = image_tag image.url.url, size: "60x60"
       %table.container__item-details__main__detail
         %tbody
           %tr
@@ -94,7 +94,7 @@
 
         
       %span.container__item-details__price__tax
-        (税込)
+        円 (税込)
       %span.container__item-details__price__delivery-fee
         送料込み
     .container__item-details__message
