@@ -30,8 +30,8 @@ Rails.application.routes.draw do
   end
   resources :credit_cards, only: [:new, :show] do
     collection do
-      post 'pay', to: 'card#pay'
-      post 'delete', to: 'card#delete'
+      post 'pay'
+      post 'delete'
     end
   end
 end
