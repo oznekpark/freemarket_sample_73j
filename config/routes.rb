@@ -22,17 +22,16 @@ Rails.application.routes.draw do
       end
     end
   end
-
-  resources :credit_cards, except: :index do
-    collection do
-      post 'pay'
-    end
-  end
-
   resources :users do
     collection do
       get 'credit_register'
       get 'logout'
+    end
+  end
+  resources :credit_cards, only: [:new, :show] do
+    collection do
+      post 'pay', to: 'card#pay'
+      post 'delete', to: 'card#delete'
     end
   end
 end
