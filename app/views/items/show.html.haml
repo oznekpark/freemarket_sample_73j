@@ -92,8 +92,12 @@
       %span.container__item-details__price__delivery-fee
         送料込み
     .container__item-details__message
+
     - if user_signed_in? && current_user.id != @item.seller_id
-      = link_to "購入画面に進む", "#", class: "container__item-details__purchase-screen-button"
+      - if @item.buyer_id == nil
+        = link_to "購入画面に進む", "#", class: "container__item-details__purchase-screen-button"
+      - else
+        = link_to "SOLD OUT", "#",class: "container__item-details__purchase-screen-button"
     - elsif user_signed_in? && current_user.id == @item.seller_id
       = link_to "商品の編集", edit_item_path, class: "submit-btn submit-btn-red"
       = link_to "この商品を削除する", item_path, class: "submit-btn submit-btn-gray", method: "DELETE"
