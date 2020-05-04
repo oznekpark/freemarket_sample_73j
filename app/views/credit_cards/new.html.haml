@@ -1,7 +1,7 @@
 .card_add 
   .title クレジットカード情報入力
   .cardForm
-    = form_with(model: @creditCard, url: credit_cards_path, method: :post, html: {name: "inputForm"}) do |f|
+    = form_with model: @creditCard, id: "form" do |f|
       .cardForm__number
         = f.label :カード番号
         %span.must_check 必須

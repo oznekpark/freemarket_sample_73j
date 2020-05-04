@@ -6,12 +6,12 @@
       .user-mypage-wrapper__main__credit__content
         .user-mypage-wrapper__main__credit__content__index
           %p クレジットカード一覧
-            - if card.blank?
-              = link_to new_credit_card_path,class: 'submit-btn submit-btn-red user-mypage-wrapper__main__credit__content__btn' do
-                %i.far.fa-credit-card
-                %span クレジットカードを追加する
-            - else
-              = render partial: "credit_cards/show"
+          - if @card.blank?
+            = link_to new_credit_card_path,class: 'submit-btn submit-btn-red user-mypage-wrapper__main__credit__content__btn' do
+              %i.far.fa-credit-card
+              %span クレジットカードを追加する
+          - else
+            = render partial: "credit_cards/show"
         .user-mypage-wrapper__main__credit__content__description
           = link_to "" do
             支払い方法について
