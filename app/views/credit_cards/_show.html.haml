@@ -1,0 +1,19 @@
+.payment
+  .payment-content
+    .payment-content__title
+      %h1.payment-header 支払い方法
+    .payment-content__main
+      .payment-content__creditcards
+        %h2.payment-title クレジットカード一覧
+      .payment-content__creditcards__list
+        %figure
+          -# = image_tag "#{@card_src}",alt: @card_brand, id: "card_image"
+        .payment-content__creditcards__list__number
+          = "**** **** **** " + @default_card_information.last4
+        .payment-content__creditcards__list__number
+          - exp_month = @default_card_information.exp_month.to_s
+          - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+          = exp_month + " / " + exp_year
+= form_with url: credit_card_path, method: :delete, id: 'charge-form',  name: "inputForm" do |f|
+  = f.text_field :card_id
+  = f.submit "削除する"

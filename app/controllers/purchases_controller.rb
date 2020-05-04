@@ -8,10 +8,10 @@ class PurchasesController < ApplicationController
     @sending_destination = current_user.sending_destination
     prefecture = Prefecture.data.select{|o| o[:id] == @sending_destination.prefecture_id}.first
     @prefectureName = prefecture[:name]
-    Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
-    card = CreditCard.where(user_id: current_user.id).first
-    customer = Payjp::Customer.retrieve(card.customer_id)
-    @default_card_information = customer.cards.retrieve(card.card_id)
+    # Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+    # card = CreditCard.where(user_id: current_user.id).first
+    # customer = Payjp::Customer.retrieve(card.customer_id)
+    # @default_card_information = customer.cards.retrieve(card.card_id)
   end
 
   def pay

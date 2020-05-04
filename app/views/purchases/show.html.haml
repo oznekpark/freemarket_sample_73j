@@ -50,7 +50,7 @@
           .details-content__infotext
           - if @default_card_information.blank?
             %br
-              = link_to "登録してください", credit_register_users_path, class: "details-content__infotext__register"
+              = link_to "登録してください", new_credit_card_path, class: "details-content__infotext__register"
           - else
             .customer-card__content--number.form_space
               = "**** **** ****" + @default_card_information.last4
