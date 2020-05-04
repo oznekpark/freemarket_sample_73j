@@ -5,15 +5,14 @@
     .container__item-details__main
       .container__item-details__main__images
         .container__item-details__main__images__display
-          画像
           %ul.container__item-details__main__images__display__up
-            -# - @item.item_imgs.each do |image| みたいな感じで表示せる
+            - @item.item_imgs.each do |image|
               %li.container__item-details__main__images__display__up__slide-image
-                -# = image_tag image.image_url, size: "300x300"　JSでサムネイルにカーソルがホバーしたときにスライドして表示させる　
+                = image_tag image.url.url, size: "280x400"
           %ul.container__item-details__main__images__display__down
-            -# "- @item.item_imgs.each do |image| みたいな感じで表示？
+            - @item.item_imgs.each do |image|
               %li.container__item-details__main__images__display__down__thumbnail-image
-                -# = image_tag image.image_url, size: "60x60"　下段のサムネ
+                = image_tag image.url.url, size: "60x60"
       %table.container__item-details__main__detail
         %tbody
           %tr
@@ -27,7 +26,6 @@
                 %div
                   %i.far.fa-laugh
                   = rand(100)
-                  -# 評価はuser_evaluationsが入るようになる？
                 %div
                   %i.fas.far.fa-meh
                   = rand(100)
@@ -57,52 +55,50 @@
             %th
               ブランド
             %td
-              = @item.brand
+              - if @item.brand == nil
+                = @item.brand
+              -else
+                = @item.brand.name
           %tr
             %th
               商品の状態
             %td
               = @item.item_condition.item_condition
-              -# item_conditionかな？
           %tr
             %th
               配送料の負担
             %td
               = @item.postage_payer.postagepayer
-              -# postage_payerかな？
           %tr
             %th
               配送の方法
             %td
               = @item.postage_type.postage_type
-              -# postage_typeかな？
           %tr
             %th
               配送元地域
             %td
               = @item.prefecture.name
-              -# prefecture_codeかな？
           %tr
             %th
               発送日の目安
             %td
               = @item.preparation_day.preparation_day_name
-              -# preparation_dayかな？
     .container__item-details__price
       %span.container__item-details__price__amount
         = @item.price
-
-        
       %span.container__item-details__price__tax
-        (税込)
+        円 (税込)
       %span.container__item-details__price__delivery-fee
         送料込み
     .container__item-details__message
-      
+    - if user_signed_in? && current_user.id != @item.seller_id
       = link_to "購入画面に進む", item_purchase_path(@item.id), class: "container__item-details__purchase-screen-button"
-      -# -if文で商品の編集、削除できるようにする　
-        = link_to "商品の編集", edit_item_path, class: "submit-btn submit-btn-red"
-        = link_to "この商品を削除する", item_path, class: "submit-btn submit-btn-gray", method: "DELETE"
+    - elsif user_signed_in? && current_user.id == @item.seller_id
+      = link_to "商品の編集", edit_item_path, class: "submit-btn submit-btn-red"
+      = link_to "この商品を削除する", item_path, class: "submit-btn submit-btn-gray", method: "DELETE"
+    - else
+      = link_to "購入画面に進む", "/users/sign_in", class: "container__item-details__purchase-screen-button"
     .container__item-details__item-description
       %p.container__item-details__item-description__inner
         = simple_format @item.introduction
@@ -118,7 +114,6 @@
           %i.far.fa-flag
           %span
             不適切な商品の報告
-
       .container__item-details__buttons__right
         = link_to "" do
           %i.fas.fa-lock
@@ -159,7 +154,6 @@
       %li.container__social-media__box__pinterest
         = link_to "" do
           %i.fab.fa-pinterest-square.fa-3x
-
 
   %navi.container__bread-crumbs
     %ul.container__bread-crumbs__list
