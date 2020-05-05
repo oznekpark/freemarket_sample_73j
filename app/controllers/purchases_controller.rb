@@ -28,11 +28,8 @@ class PurchasesController < ApplicationController
     currency: 'jpy',
     card: params['payjpToken']
     )
-    redirect_to action: 'complete'
-  end
-
-  def complete
     @item_buyer = Item.find(params[:item_id])
     @item_buyer.update(buyer_id: current_user.id)
+    redirect_to root_path
   end
 end

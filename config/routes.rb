@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     resources :purchases, only: :show do
       collection do
         post 'pay'
-        get 'complete'
       end
     end
   end
