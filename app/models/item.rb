@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :item_imgs, allow_destroy: true
   has_one :user_evaluation
 
-  belongs_to :category, optional: true 
+  belongs_to :category
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
 
@@ -31,4 +31,9 @@ class Item < ApplicationRecord
   validates :seller_id,           presence: true
   validates :size_id,             presence: true
   validates :postage_type_id,     presence: true
+
+  def first_image
+    item_imgs.first
+  end
+
 end
