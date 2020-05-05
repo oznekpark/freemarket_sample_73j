@@ -8,26 +8,31 @@ class PurchasesController < ApplicationController
     @sending_destination = current_user.sending_destination
     prefecture = Prefecture.data.select{|o| o[:id] == @sending_destination.prefecture_id}.first
     @prefectureName = prefecture[:name]
-    # Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
-    # card = CreditCard.where(user_id: current_user.id).first
-    # customer = Payjp::Customer.retrieve(card.customer_id)
-    # @default_card_information = customer.cards.retrieve(card.card_id)
+    Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+    @card = CreditCard.where(user_id: current_user.id).first
+    if @card.present?
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @card_info = customer.cards.retrieve(@card.card_id)
+      @exp_month = @card_info.exp_month.to_s
+      @exp_year = @card_info.exp_year.to_s.slice(2,3)
+    end
   end
 
   def pay
-    item = Item.find(params[:id])
-    card = Card.where(user_id: current_user.id).first
+    item = Item.find(params[:item_id])
+    card = CreditCard.where(user_id: current_user.id).first
     Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
     Payjp::Charge.create(
-    :amount => item.price, #支払金額を入力（itemテーブル等に紐づけても良い）
-    :customer => card.customer_id, #顧客ID
-    :currency => 'jpy', #日本円
-  )
-  redirect_to action: 'complete' #完了画面に移動
+    amount: item.price,
+    customer: card.customer_id,
+    currency: 'jpy',
+    card: params['payjpToken']
+    )
+    redirect_to action: 'complete'
   end
 
   def complete
-    @item_buyer = Item.find(params[:id])
+    @item_buyer = Item.find(params[:item_id])
     @item_buyer.update(buyer_id: current_user.id)
   end
 end

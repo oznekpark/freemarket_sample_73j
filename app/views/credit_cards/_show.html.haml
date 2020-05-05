@@ -13,4 +13,4 @@
         = "**** **** **** " + @card_info.last4
       .payment-content__creditcards__list__day
         = @exp_month + " / " + @exp_year
-  = link_to "削除する", credit_card_path(@card.id), method: :delete, id: 'charge-form',  name: "inputForm"
+  = button_to "削除する", credit_card_path(@card.id), {method: :delete, id: 'charge-form', name: "inputForm"}

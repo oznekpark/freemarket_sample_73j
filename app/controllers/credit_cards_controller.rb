@@ -7,24 +7,21 @@ class CreditCardsController < ApplicationController
     # redirect_to action: :show if card.exists?
   end
 
-  def create #payjpとCardのデータベース作成を実施します
+  def create
     Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
     if params['payjpToken'].blank?
       # paramsの中にjsで作った'payjpTokenが存在するか確かめる
       render action: :new
     else
-      # pay.jpに保存
       customer = Payjp::Customer.create(
       card: params['payjpToken'],
-      # email: current_user.email,
-      # metadata: {user_id: current_user.id}
       )
       @creditcard = CreditCard.new(
         user_id: current_user.id, 
         customer_id: customer.id, 
-        card_id: customer.default_card
+        card_id: customer.default_card,
+        metadata: {user_id: current_user.id}
         )
-      # ここでdbに保存
       if @creditcard.save
         flash[:notice] = 'クレジットカードの登録が完了しました'
         redirect_to controller: "users", action: 'credit_register'
@@ -35,7 +32,7 @@ class CreditCardsController < ApplicationController
     end
   end
 
-   def show #Cardのデータpayjpに送り情報を取り出します
+   def show
     card = CreditCard.where(user_id: current_user.id).first
     if card.blank?
       redirect_to action: :new
@@ -64,16 +61,12 @@ class CreditCardsController < ApplicationController
     end
   end
 
-  def destroy #PayjpとCardデータベースを削除します
+  def destroy
     card = CreditCard.where(user_id: current_user.id).first
-    if card.blank?
-      redirect_to action: :new
-    else
-      Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      customer.delete
-      card.delete
-      redirect_to controller: "users", action: 'credit_register'
-    end
+    Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
+    customer = Payjp::Customer.retrieve(card.customer_id)
+    customer.delete
+    card.delete
+    redirect_to controller: :users, action: :credit_register
   end
 end

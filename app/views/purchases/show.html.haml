@@ -48,22 +48,20 @@
         .details-content__inner
           支払い方法
           .details-content__infotext
-          - if @default_card_information.blank?
+          - if @card == nil
             %br
               = link_to "登録してください", new_credit_card_path, class: "details-content__infotext__register"
           - else
             .customer-card__content--number.form_space
-              = "**** **** ****" + @default_card_information.last4
+              = "**** **** **** " + @card_info.last4
             .customer-card__content--expired.form_space
-              - exp_month = @default_card_information.exp_month.to_s
-              - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-              = exp_month + " / " + exp_year
+              = @exp_month + " / " + @exp_year
             %br
             = link_to credit_register_users_path, class: 'details-content__fix' do
               %span 変更する
               = icon 'fas', 'chevron-right'
       .details-content__btnText
-        = button_tag "購入する", class:"details-content__btn"
+        = button_to "購入する", pay_item_purchases_path, { method: :post, class:"details-content__btn"}
   .signup-footer
     %nav.signup-footer__nav
       %ul.signup-footer__nav__lists

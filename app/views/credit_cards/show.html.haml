@@ -1,10 +1,16 @@
-%label 登録クレジットカード情報
-%br
-= "**** **** **** " + @default_card_information.last4
-%br
-- exp_month = @default_card_information.exp_month.to_s
-- exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-= exp_month + " / " + exp_year
-= form_tag(card_delete_path, method: :post, id: 'charge-form',  name: "inputForm") do
-  %input{ type: "hidden", name: "card_id", value: "" }
-  %button 削除する
+.payment
+  .payment-content
+    .payment-content__title
+      .payment-header 
+        支払い方法
+    .payment-content__main
+      .payment-content__creditcards
+        .payment-title 
+          クレジットカード一覧
+      .payment-content__creditcards__list
+        -# = image_tag(image_path("cards/#{@card_src}"), width: 40, height: 30
+      .payment-content__creditcards__list__number
+        = "**** **** **** " + @card_info.last4
+      .payment-content__creditcards__list__day
+        = @exp_month + " / " + @exp_year
+  = button_to "削除する", credit_card_path(@card.id), {method: :delete, id: 'charge-form', name: "inputForm"}, data: {confirm: 'Are you sure?' } 

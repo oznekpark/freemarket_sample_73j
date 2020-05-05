@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_03_050234) do
+ActiveRecord::Schema.define(version: 2020_04_29_143051) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -37,13 +37,11 @@ ActiveRecord::Schema.define(version: 2020_05_03_050234) do
   end
 
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "expiration_year"
-    t.integer "expiration_month"
+    t.string "customer_id", null: false
+    t.string "card_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "customer_id", null: false
-    t.string "card_id", null: false
     t.index ["user_id"], name: "index_credit_cards_on_user_id"
   end
 
