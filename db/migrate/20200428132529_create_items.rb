@@ -10,7 +10,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer :preparation_day_id, null: false
       t.integer :postage_type_id, null: false
       t.integer :brand_id
-      t.integer :prefecture_code, null: false
+      t.integer :prefecture_id, null: false
       t.integer :trading_status, default: 0, null: false, limit: 1
       t.references :category, foreign_key: true
       t.references :buyer, foreign_key: { to_table: :users }

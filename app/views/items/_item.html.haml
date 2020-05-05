@@ -3,6 +3,7 @@
     = link_to item_path(item), data:{"turbolinks" => false}, class: "line" do
       .pickup-container__product-box__product-lists__product-list__img
         = image_tag item.first_image.url.url, class: "img_k"
+      .items-box_photo
       .body
         .body__name
           = item.name
@@ -14,13 +15,15 @@
             ★0
         .body__tax
           (税込)
+
 - else
   .pickup-container__product-box__product-lists__product-list
     = link_to item_path(item), data:{"turbolinks" => false}, class: "line" do
       .pickup-container__product-box__product-lists__product-list__img
-        = image_tag item.first_image.image.url, class: "img_k"
-      .sold-cover
-      %p.sold sold
+        = image_tag item.first_image.url.url, class: "img_k"
+      .items-box_photo__sold
+        .items-box_photo__sold__inner
+          SOLD
       .body
         .body__name
           = item.name

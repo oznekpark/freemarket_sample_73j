@@ -31,4 +31,9 @@ class Item < ApplicationRecord
   validates :seller_id,           presence: true
   validates :size_id,             presence: true
   validates :postage_type_id,     presence: true
+
+  def first_image
+    item_imgs.first
+  end
+
 end
