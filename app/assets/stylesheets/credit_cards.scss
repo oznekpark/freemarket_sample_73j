@@ -1,3 +1,165 @@
-// Place all the styles related to the CreditCards controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// 変数----------------
+$border: 1px solid #efefef;
+$background-color: #fff;
+$red: #ea352d;
+ //-------------------------
+
+//登録カード確認ページ
+.payment {
+  width: 100%;
+  display: flex;
+  &__content {
+    padding-top: 5px;
+    &__cardImage {
+      padding-top: 10px;
+    }
+    &__details {
+      width: 100%;
+      &__cardNumber {
+        font-size: 0.9em;
+        font-weight: lighter;
+      }
+      &__cardMMYY {
+        font-size: 0.9em;
+        font-weight: lighter;
+        padding-top: 10px;
+      }
+    }
+  }
+  &__cardDelete {
+    padding: 30px 0 0 120px;
+    &__deleteBtn {
+      background-color: $background-color;
+      display: block;
+      color: #ea352d;
+      border: 1px solid #ea352d;
+      border-radius: 2px;
+      padding: 1px;
+    }
+  }
+}
+
+//カード登録ページ
+.wrapper {
+  width: 100vw;
+  background-color: $background-color;
+}
+
+.signup-header {
+  text-align: center;
+  padding: 30px 0 20px;
+  background-color: $background-color;
+}
+
+.signup-footer {
+  height: 250px;
+  text-align: center;
+  background-color:$background-color;
+  color: $background-color;
+  padding: 20px 0 10px;
+  &__nav{
+    padding: 30px 0;
+    &__lists__list {
+      padding: 7px 0;
+      font-size: 13px;
+    }
+  }
+  &__logo {
+    margin: 40px auto 0;
+    text-decoration: none;
+    padding-top :20px;
+  }
+  &__bottom {
+    font-size: 10px;
+  }
+}
+
+.cardAdd {
+  width: 700px;
+  margin: 0 auto;
+  background-color: $background-color;
+}
+
+.title {
+  text-align: center;
+  padding: 20px 0;
+  font-weight: bold;
+  border-bottom: $border;
+  font-size: 20px;
+}
+
+.cardForm {
+  padding: 40px 200px;
+  &__number {
+    padding-bottom: 10px;
+  }
+  &__field {
+    padding-bottom: 10px;
+  }
+  &__expirationdate {
+    padding-top: 40px;
+    &__details {
+      padding-bottom: 10px;
+    }
+    &__choice__month {
+      padding-bottom: 20px;
+    }
+  }
+  &__securitycode {
+    padding-top: 40px;
+    &__details__title {
+      padding-bottom: 10px;
+    }
+    &__details__hatena {
+      padding-top: 7px;
+      &__link {
+        color: #0099e8;
+        font-size: 0.8em;
+      }
+    }
+  }
+}
+
+#card_token {
+  padding-top: 40px;
+}
+
+#token_submit {
+  width: 100%;
+  background: $red;
+  border: 1px solid $red;
+  color: $background-color;
+  height: 50px;
+}
+
+.cvc {
+  width: 100%;
+  height: 40px;
+  border-radius: 3px;
+}
+
+#exp_month {
+  width: 40%;
+  height: 40px;
+  border-radius: 3px;
+}
+
+#exp_year {
+  width: 40%;
+  height: 40px;
+  border-radius: 3px;
+}
+
+.must_check {
+  background-color: $red;
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: $background-color;
+  font-size: 12px;
+}
+
+.form-group__input {
+  width: 100%;
+  height: 40px;
+  border-radius: 3px;
+}

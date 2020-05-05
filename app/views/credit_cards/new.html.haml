@@ -1,35 +1,60 @@
-.card_add 
-  .title クレジットカード情報入力
-  .cardForm
-    = form_with model: @creditCard, id: "form" do |f|
-      .cardForm__number
-        = f.label :カード番号
-        %span.must_check 必須
-        = f.text_field :card_number, id: "card_number", placeholder: "半角数字のみ", class: "form-group__input", maxlength: 16
-      .cardForm__image
-        = image_tag(image_path('cards/icon_visa.png'), class: 'visa', width: 40, height: 28)
-        = image_tag(image_path('cards/icon_mastercard.png'), class: 'master', width: 40, height: 30)
-        = image_tag(image_path('cards/icon_jcb.png'), class: 'jcb', width: 40, height: 30)
-        = image_tag(image_path('cards/icon_amex.png'), class: 'amex', width: 40, height: 30)
-        = image_tag(image_path('cards/icon_diners.png'), class: 'diners', width: 40, height: 30)
-        = image_tag(image_path('cards/icon_discover.png'), class: 'discover', width: 40, height: 30)
-      .cardForm__expirationdate
-        .cardForm__expirationdate__details
-          = f.label :有効期限
+.wrapper
+  .signup-header
+    = link_to root_path do
+      = image_tag "logo.png", width: 140, height: 40
+  .cardAdd 
+    .title 
+      クレジットカード情報入力
+    .cardForm
+      = form_with model: @creditCard, id: "form" do |f|
+        .cardForm__number
+          = f.label :カード番号, class: "cardForm__number__title"
           %span.must_check 必須
-          %br
-        .cardForm__expirationdate__choice
-          .cardForm__expirationdate__choice__month
-            = f.select :expiration_month, options_for_select(["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]), {}, {id: "exp_month", name: "exp_month", type: "text"}
-            = f.label :月, class: "cardForm__expirationdate__choice__month__label"
-          .cardForm__expirationdate__choice__year
-            = f.select :expiration_year, options_for_select((2020..2030)), {}, {id: "exp_year", name: "exp_year", type: "text"}
-            = f.label :年, class: "cardForm__expirationdate__choice__year__label"
-      .cardForm__securitycode
-        .cardForm__securitycode__details
-          .cardForm__securitycode__details__title 
-            = f.label :セキュリティコード, class: "label"
+        .cardForm__field
+          = f.text_field :card_number, id: "card_number", placeholder: "半角数字のみ", class: "form-group__input", maxlength: 16
+        .cardForm__image
+          = image_tag(image_path('cards/icon_visa.png'), class: 'visa', width: 58, height: 28)
+          = image_tag(image_path('cards/icon_mastercard.png'), class: 'master', width: 47, height: 36)
+          = image_tag(image_path('cards/icon_jcb.png'), class: 'jcb', width: 40, height: 30)
+          = image_tag(image_path('cards/icon_amex.png'), class: 'amex', width: 40, height: 30)
+          = image_tag(image_path('cards/icon_diners.png'), class: 'diners', width: 45, height: 32)
+          = image_tag(image_path('cards/icon_discover.png'), class: 'discover', width: 47, height: 30)
+        .cardForm__expirationdate
+          .cardForm__expirationdate__details
+            = f.label :有効期限
             %span.must_check 必須
-            = f.text_field :cvc,  id: "cvc", class: "cvc", placeholder: "カード背面3~4桁の番号", maxlength: "4"
-      #card_token
-        = f.submit "登録する", id: "token_submit", url: credit_cards_path, method: :post
+            %br
+          .cardForm__expirationdate__choice
+            .cardForm__expirationdate__choice__month
+              = f.select :expiration_month, options_for_select(["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]), {}, {id: "exp_month", name: "exp_month", type: "text"}
+              = f.label :月, class: "cardForm__expirationdate__choice__month__label"
+            .cardForm__expirationdate__choice__year
+              = f.select :expiration_year, options_for_select((2020..2030)), {}, {id: "exp_year", name: "exp_year", type: "text"}
+              = f.label :年, class: "cardForm__expirationdate__choice__year__label"
+        .cardForm__securitycode
+          .cardForm__securitycode__details
+            .cardForm__securitycode__details__title 
+              = f.label :セキュリティコード, class: "label"
+              %span.must_check 必須
+            .cardForm__securitycode__details__field
+              = f.text_field :cvc,  id: "cvc", class: "cvc", placeholder: "カード背面3~4桁の番号", maxlength: "4"
+            .cardForm__securitycode__details__hatena
+              = link_to "カード背面の番号とは?", "#", class: "cardForm__securitycode__details__hatena__link"
+        #card_token
+          = f.submit "登録する", id: "token_submit", url: credit_cards_path, method: :post
+  .signup-footer
+    %nav.signup-footer__nav
+      %ul.signup-footer__nav__lists
+        %li.signup-footer__nav__lists__list
+          = link_to '#' do
+            プライバシーポリシー
+        %li.signup-footer__nav__lists__list
+          = link_to '#' do
+            メルカリ利用規約
+        %li.signup-footer__nav__lists__list
+          = link_to '#' do
+            特定商取引に関する表記
+    = link_to root_path, class: 'signup-footer__logo' do
+      = image_tag "logo/logo-white.png", height: '30', width: '120', class: "signup-footer__logo__tag"
+    .signup-footer__bottom
+      © FURIMA

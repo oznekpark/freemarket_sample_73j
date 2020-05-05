@@ -19,8 +19,7 @@ class CreditCardsController < ApplicationController
       @creditcard = CreditCard.new(
         user_id: current_user.id, 
         customer_id: customer.id, 
-        card_id: customer.default_card,
-        metadata: {user_id: current_user.id}
+        card_id: customer.default_card
         )
       if @creditcard.save
         flash[:notice] = 'クレジットカードの登録が完了しました'
@@ -67,6 +66,6 @@ class CreditCardsController < ApplicationController
     customer = Payjp::Customer.retrieve(card.customer_id)
     customer.delete
     card.delete
-    redirect_to controller: :users, action: :credit_register
+    redirect_to controller: :users, action: :index
   end
 end

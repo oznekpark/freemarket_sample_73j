@@ -1,16 +1,11 @@
 .payment
-  .payment-content
-    .payment-content__title
-      .payment-header 
-        支払い方法
-    .payment-content__main
-      .payment-content__creditcards
-        .payment-title 
-          クレジットカード一覧
-      .payment-content__creditcards__list
-        -# = image_tag(image_path("cards/#{@card_src}"), width: 40, height: 30
-      .payment-content__creditcards__list__number
+  .payment__content
+    .payment__content__cardImage
+      = image_tag "cards/#{@card_src}", width: 40, height: 28
+    .payment__content__details
+      .payment__content__details__cardNumber
         = "**** **** **** " + @card_info.last4
-      .payment-content__creditcards__list__day
+      .payment__content__details__cardMMYY
         = @exp_month + " / " + @exp_year
-  = button_to "削除する", credit_card_path(@card.id), {method: :delete, id: 'charge-form', name: "inputForm"}
+  .payment__cardDelete
+    = button_to "削除する", credit_card_path(@card.id), {method: :delete, id: 'charge-form', name: "inputForm", class: "payment__cardDelete__deleteBtn"}
