@@ -1,6 +1,6 @@
 jQuery(document).on('turbolinks:load', function(){
   $(function() {
-    Payjp.setPublicKey('pk_test_a934424b3e21c4eb592c07d7');
+    Payjp.setPublicKey(gon.payjpPublicKey);
     $("#token_submit").on('click', function(e){
       e.preventDefault();
       let card = {
