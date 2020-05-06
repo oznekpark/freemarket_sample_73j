@@ -14,15 +14,17 @@ Rails.application.routes.draw do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
     end
+    resources :purchases, only: :show do
+      collection do
+        post 'pay'
+      end
+    end
   end
-
-  # 本当はitemにネストする感じだと思いますが、スプリントレビューのため一時的にここに設定。
-  resources :purchases
-
   resources :users do
     collection do
       get 'credit_register'
       get 'logout'
     end
   end
+  resources :credit_cards, only: [:new, :create, :show, :destroy] 
 end

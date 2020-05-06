@@ -86,7 +86,7 @@
               = @item.preparation_day.preparation_day_name
     .container__item-details__price
       %span.container__item-details__price__amount
-        = @item.price
+        = convertToJPY(@item.price)
       %span.container__item-details__price__tax
         円 (税込)
       %span.container__item-details__price__delivery-fee
@@ -95,7 +95,7 @@
 
     - if user_signed_in? && current_user.id != @item.seller_id
       - if @item.buyer_id == nil
-        = link_to "購入画面に進む", "#", class: "container__item-details__purchase-screen-button"
+        = link_to "購入画面に進む", item_purchase_path(@item.id), class: "container__item-details__purchase-screen-button"
       - else
         = link_to "SOLD OUT", "#",class: "container__item-details__purchase-screen-button"
     - elsif user_signed_in? && current_user.id == @item.seller_id

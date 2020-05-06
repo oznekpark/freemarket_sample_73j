@@ -1,0 +1,11 @@
+.payment
+  .payment__content
+    .payment__content__cardImage
+      = image_tag "cards/#{@card_src}", width: 40, height: 28
+    .payment__content__details
+      .payment__content__details__cardNumber
+        = "**** **** **** " + @card_info.last4
+      .payment__content__details__cardMMYY
+        = @exp_month + " / " + @exp_year
+  .payment__cardDelete
+    = button_to "削除する", credit_card_path(@card.id), {method: :delete, id: 'charge-form', name: "inputForm", class: "payment__cardDelete__deleteBtn"}

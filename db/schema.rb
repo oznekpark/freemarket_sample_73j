@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(version: 2020_04_29_143051) do
   end
 
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "expiration_year", null: false
-    t.integer "expiration_month", null: false
+    t.string "customer_id", null: false
+    t.string "card_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -162,14 +162,6 @@ ActiveRecord::Schema.define(version: 2020_04_29_143051) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "nickname", null: false
-    t.string "first_name", null: false
-    t.string "family_name", null: false
-    t.string "first_name_kana", null: false
-    t.string "family_name_kana", null: false
-    t.integer "birth_year", null: false
-    t.integer "birth_month", null: false
-    t.integer "birth_day", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

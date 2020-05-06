@@ -6,7 +6,9 @@ class ItemsController < ApplicationController
     @items = Item.includes(:item_imgs).order("created_at DESC")
   end
 
-  
+  def show
+    @item = Item.find(params[:id])
+  end
 
   def new
     @item = Item.new
