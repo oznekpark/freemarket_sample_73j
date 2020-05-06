@@ -1,12 +1,12 @@
 class CreditCardsController < ApplicationController
   before_action :set_card, only: [:show, :destroy]
   before_action :set_payjpSecretKey, except: :new
-  before_action :set_payjpPublicKey, only: [:new, :create]
 
   require "payjp"
 
   def new
     @creditCard = CreditCard.new
+    gon.payjpPublicKey = Rails.application.credentials[:payjp][:PAYJP_PUBLIC_KEY]
   end
 
   def create
@@ -68,7 +68,4 @@ class CreditCardsController < ApplicationController
     Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
   end
 
-  def set_payjpPublicKey
-    gon.payjpPublicKey = Rails.application.credentials[:payjp][:PAYJP_PUBLIC_KEY]
-  end
 end

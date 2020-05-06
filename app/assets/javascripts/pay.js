@@ -1,4 +1,4 @@
-jQuery(document).on('turbolinks:load', function(){
+$(document).on('turbolinks:load', function() {
   $(function() {
     Payjp.setPublicKey(gon.payjpPublicKey);
     $("#token_submit").on('click', function(e){
