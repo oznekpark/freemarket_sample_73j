@@ -61,7 +61,11 @@
               %span 変更する
               = icon 'fas', 'chevron-right'
       .details-content__btnText
-        = button_to "購入する", pay_item_purchases_path, { method: :post, class:"details-content__btn"}
+        -if @card_info.blank? || @sending_destination.blank?
+          = button_to "購入する", pay_item_purchases_path, {method: :post, class: "details-content__nobtn"}
+        - else
+          = button_to "購入する", pay_item_purchases_path, {method: :post, class: "details-content__btn"}
+        
   .signup-footer
     %nav.signup-footer__nav
       %ul.signup-footer__nav__lists

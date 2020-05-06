@@ -3,14 +3,11 @@ class CreditCardsController < ApplicationController
 
   def new
     @creditCard = CreditCard.new
-    # card = CreditCard.where(user_id: current_user.id)
-    # redirect_to action: :show if card.exists?
   end
 
   def create
     Payjp.api_key = Rails.application.credentials[:payjp][:PAYJP_SECRET_KEY]
     if params['payjpToken'].blank?
-      # paramsの中にjsで作った'payjpTokenが存在するか確かめる
       render action: :new
     else
       customer = Payjp::Customer.create(

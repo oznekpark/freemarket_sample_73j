@@ -135,6 +135,17 @@ $background-color: #fff;
     font-weight: bold;
     font-size: 13px;
   }
+  &__nobtn {
+    background: #adabab;
+    border: 1px solid #adabab;
+    padding: 17px;
+    margin: 30px 0;
+    width: 60%;
+    color: rgb(80, 80, 80);
+    font-weight: bold;
+    font-size: 13px;
+    pointer-events: none;
+  }
 }
 .signup-footer {
   height: 250px;
