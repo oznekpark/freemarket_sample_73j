@@ -16,6 +16,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.seller_id = current_user.id
     if @item.save
+      flash[:notice] = '出品が完了しました'
       redirect_to root_path
     else
       redirect_to new_item_path(@item), flash: { error: @item.errors.full_messages }
@@ -29,6 +30,7 @@ class ItemsController < ApplicationController
   def destroy
     if @item.seller_id == current_user.id && @item.destroy
       redirect_to root_path
+      flash[:notice] = '商品の削除が完了しました'
     else
       render "items/show"
     end
@@ -53,6 +55,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_update_params)
+      flash[:notice] = '商品の編集が完了しました'
       redirect_to item_path(@item)
     else
       grandchild_category = @item.category
