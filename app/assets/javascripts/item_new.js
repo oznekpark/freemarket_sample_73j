@@ -18,6 +18,26 @@ $(document).on('turbolinks:load', function(){
       return html;
     }
 
+    // 編集
+    if (window.location.href.match(/\/items\/\d+\/edit/)){
+      //登録済み画像のプレビュー表示欄の要素を取得する
+      var prevContent = $('.label-content').prev();
+      labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
+      $('.label-content').css('width', labelWidth);
+      //プレビューにidを追加
+      $('.preview-box').each(function(index, box){
+        $(box).attr('id', `preview-box__${index}`);
+      })
+      //削除ボタンにidを追加
+      $('.delete-box').each(function(index, box){
+        $(box).attr('id', `delete_btn_${index}`);
+      })
+      var count = $('.preview-box').length;
+      //プレビューが5あるときは、投稿ボックスを消しておく
+      if (count == 5) {
+        $('.label-content').hide();
+      }
+    }
 
     function setLabel() {
       var prevContent = $('.label-content').prev();
@@ -38,7 +58,7 @@ $(document).on('turbolinks:load', function(){
       reader.readAsDataURL(file);
       //読み込み時に発火するイベント
       reader.onload = function() {
-        var image = this.result;
+        var url = this.result;
         //プレビューが元々なかった場合はhtmlを追加
         if ($(`#preview-box__${id}`).length == 0) {
           var count = $('.preview-box').length;
@@ -48,7 +68,7 @@ $(document).on('turbolinks:load', function(){
           $(prevContent).append(html);
         }
         //イメージを追加
-        $(`#preview-box__${id} img`).attr('src', `${image}`);
+        $(`#preview-box__${id} img`).attr('src', `${url}`);
         var count = $('.preview-box').length;
         //プレビューが5個あったらラベルを隠す 
         if (count == 5) { 

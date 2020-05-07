@@ -8,7 +8,7 @@
           %ul.container__item-details__main__images__display__up
             - @item.item_imgs.each do |image|
               %li.container__item-details__main__images__display__up__slide-image
-                = image_tag image.url.url, size: "280x400"
+                = image_tag image.url.url, size: "300x400"
           %ul.container__item-details__main__images__display__down
             - @item.item_imgs.each do |image|
               %li.container__item-details__main__images__display__down__thumbnail-image
