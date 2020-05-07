@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :item_imgs, allow_destroy: true
   has_one :user_evaluation
 
-  belongs_to :category
+  belongs_to :category, optional: true 
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
 
