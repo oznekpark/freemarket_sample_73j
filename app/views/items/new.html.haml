@@ -8,14 +8,7 @@
       .exhibit__main__itemProfile
         .exhibit__main__itemProfile__inputForm
         = form_with( model: @item, url: items_path, local: true) do |f|
-          - if flash[:error].present?
-            %ul.errors
-              - flash[:error].each do |e|
-                %li=e
-            .alert.alert-danger
-              %ul
-                - @item.errors.full_messages.each do |msg|
-                  %li= msg
+          = render 'layouts/error_messages', model: f.object
           .exhibit__main__itemProfile__inputForm__sellImage
             .exhibit__main__itemProfile__inputForm__sellImage__upload
               .exhibit__main__itemProfile__inputForm__sellImage__upload__head
