@@ -7,9 +7,7 @@ $(document).on('turbolinks:load', function(){
                       <img src="" alt="preview">
                     </div>
                     <div class="lower-box">
-                      <div class="update-box">
-                        <label class="edit_btn">編集</label>
-                      </div>
+                      
                       <div class="delete-box" id="delete_btn_${count}">
                         <span>削除</span>
                       </div>
@@ -17,6 +15,11 @@ $(document).on('turbolinks:load', function(){
                   </div>`
       return html;
     }
+    // 編集ボタン削除しました。欲しければ、したのコードをlower-box内に追加してください。
+    // <div class="update-box">
+    //   <label class="edit_btn">編集</label>
+    // </div>
+
 
     // 編集
     if (window.location.href.match(/\/items\/\d+\/edit/)){
