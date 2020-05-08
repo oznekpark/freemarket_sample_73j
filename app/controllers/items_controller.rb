@@ -19,7 +19,8 @@ class ItemsController < ApplicationController
       flash[:notice] = '出品が完了しました'
       redirect_to root_path
     else
-      redirect_to new_item_path(@item), flash: { error: @item.errors.full_messages }
+      @item.item_imgs.new
+      render :new
     end
   end
 
