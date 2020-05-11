@@ -1,0 +1,16 @@
+.main{
+  background-color: #fff;
+  .search{
+    .search-container{
+      &__head{ 
+        padding-left:100px;
+      }
+      &__product-box{
+        padding-left:100px;
+      }
+      &__product-lists{
+        padding-left:100px;
+      }
+    }
+  }
+}

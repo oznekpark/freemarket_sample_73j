@@ -36,4 +36,6 @@ class Item < ApplicationRecord
     item_imgs.first
   end
 
+  scope :search, -> (search){where('name LIKE(?)', "%#{search}%")}
+
 end

@@ -37,6 +37,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @items = Item.search(params[:keyword])
+    @parents = Category.where(ancestry: nil)
+  end
+
+  def count
+    @cnt = Item.where(name: '検索結果').count
+    render text: "検索結果は#(cnt)個です。"
+  end
+
   def edit
     grandchild_category = @item.category
     child_category = grandchild_category.parent
