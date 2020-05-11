@@ -6,12 +6,10 @@
           = link_to root_path, data:{"turbolinks" => false} do
             =image_tag asset_path("logo.png"), class: "header-image"
         .header__box__upper__search
-          %form{content:"accept-charset = UTF-8", action: "#", method: "get"}
-          %input{name: "utf8", type: "hidden", value: "✓"}/
-          %input#searchInput.header__box__upper__search--input{placeholder: "キーワードから探す"}/
-          %button{type: "submit", class: 'header__box__upper__search--btn'} 
-            = icon('fas', 'search', class: 'search-icon')
-
+          = form_with(url: search_items_path, local: true, method: :get, class: "search-form") do |form|
+            = form.text_field :keyword, placeholder: "キーワードから探す", class: "header__box__upper__search--input"
+            %button{type: "submit", class: 'header__box__upper__search--btn'} 
+              = icon('fas', 'search', class: 'search-icon')
       .header__box__navi
         .header__box__navi__left
           .header__box__navi__left__category

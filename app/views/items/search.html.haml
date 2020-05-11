@@ -1,0 +1,101 @@
+.wrapper
+  .header
+    .header__box
+      .header__box__upper
+        .header__box__upper__title-icon
+          = link_to root_path, data:{"turbolinks" => false} do
+            =image_tag asset_path("logo.png"), class: "header-image"
+        .header__box__upper__search
+          = form_with(url: search_items_path, local: true, method: :get, class: "search-form") do |form|
+            = form.text_field :keyword, placeholder: "キーワードから探す", class: "header__box__upper__search--input"
+            %button{type: "submit", class: 'header__box__upper__search--btn'} 
+              = icon('fas', 'search', class: 'search-icon')
+      .header__box__navi
+        .header__box__navi__left
+          .header__box__navi__left__category
+            カテゴリ
+            %ul.category1
+              - @parents.each do |parent|
+                %li.parent__list
+                  = link_to parent.name
+                  %ul.category2
+                    - parent.children.each do |child|
+                      %li.child__list
+                        =link_to child.name
+                        %ul.category3
+                          - child.children.each do |grandchild|
+                            %li.grandchild__list
+                              = link_to grandchild.name
+          .header__box__navi__left__brand
+            =link_to "#" , class:"header__box__navi__left__brand" do
+              ブランド
+
+        .header__box__navi__right
+          - if user_signed_in?
+            = link_to "マイページ", "/users", class:"header__box__navi__right__mypage"             
+          - else
+            =link_to "ログイン","/users/sign_in", class:"header__box__navi__right__login" 
+            =link_to "新規登録","/users/sign_up", class:"header__box__navi__right__new", data:{"turbolinks" => false}
+      .header__box__menuIcon
+        = icon('fas', 'bars')
+        メニュー
+  .main
+    .search
+      .search-container
+        .search-container__head
+          キーワード検索
+        .search-container__product-box
+          .search-container__product-box__product-head
+            = link_to "#", class: "line" do
+              = "検索結果: #{@items.length}件"
+        .search-container__product-lists
+          = render @items
+  .appBanner
+    .appBanner__inner
+      %h2.appBanner__inner__title　だれでもかんたん、人生を変えるフリマアプリ
+      
+      %p.appBanner__inner__text 今すぐ無料ダウンロード！
+      .appBanner__inner__icon
+        = image_tag asset_path("apple_Badge.png") ,class:"icon-apple" 
+        = image_tag asset_path("google_Badge.png") ,class:"icon-google"
+
+  .footer
+    %ul.footer__contents
+      %li.footer__contents__content
+        .footer__contents__content__name
+          FURIMAについて
+        = link_to "#", class:"kaisya" do
+          会社概要
+        = link_to "#", class:"privacy" do
+          プライバシーポリシー
+        = link_to "#", class:"kiyaku" do
+          FURIMA利用規約
+        = link_to "#", class:"tokuyaku" do
+          ポイントに関する特約
+      %li.footer__contents__content
+        .footer__contents__content__name
+          FURIMAを見る
+        = link_to "#", class:"category" do
+          カテゴリー一覧
+        = link_to "#", class:"bland" do
+          ブランド一覧
+      %li.footer__contents__content
+        .footer__contents__content__name
+          ヘルプ&ガイド
+        = link_to "#", class:"guide" do
+          FURIMAガイド
+        = link_to "#", class:"guideline" do
+          FURIMAロゴ利用ガイドライン
+        = link_to "#", class:"info" do
+          お知らせ
+    =image_tag asset_path("logo-white.png"), class: "footer__logo"
+    .copyright
+      © FURIMA
+
+- if user_signed_in? 
+  .exhibition-btn
+    =link_to "/items/new", data:{"turbolinks" => false} do
+      .exhibition-btn__text
+        出品する
+      .exhibition-btn__image
+        %i.fas.fa-camera.fa-3x
