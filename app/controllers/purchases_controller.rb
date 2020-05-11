@@ -7,7 +7,7 @@ class PurchasesController < ApplicationController
 
   def show
     redirect_to item_path(@item.id) if @item.buyer_id.present?
-    @item_img = @item.item_imgs.find(params[:id])
+    @item_img = @item.item_imgs[0]
     @sending_destination = current_user.sending_destination
     prefecture = Prefecture.data.select{|o| o[:id] == @sending_destination.prefecture_id}.first
     @prefectureName = prefecture[:name]
