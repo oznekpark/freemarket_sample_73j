@@ -8,8 +8,9 @@ $red: #ea352d;
 .payment {
   width: 100%;
   display: flex;
+  padding-top: 20px;
   &__content {
-    padding-top: 5px;
+    padding-top: 10px;
     &__cardImage {
       padding-top: 10px;
     }

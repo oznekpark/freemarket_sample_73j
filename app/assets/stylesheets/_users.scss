@@ -273,6 +273,7 @@
       font-weight: bold;
       font-size: 16px;
       margin-bottom: 24px;
+      padding-top: 15px;
     }
     &__btn{
       box-sizing: border-box;
@@ -296,7 +297,6 @@
   position: relative;
   padding-top: 50px;
   margin-bottom: 60px;
-  border-top: 1px solid $normal-gray;
   padding-right: 80px;
   a{
     position: absolute;
@@ -324,3 +324,8 @@
   font-size: 14px;
 }
 
+.MypageHeader {
+  background-color: $global-back-color;
+  text-align: center;
+  padding-top: 20px;
+}
