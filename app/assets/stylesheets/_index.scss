@@ -629,10 +629,11 @@ ul.category3{
         }
       }
       &__lists{
-        width: 780px;
+        width: 100%;
         margin: 26px auto;
         display: flex;
         justify-content: space-around;
+        overflow: scroll;
         a{
           background-color: #fff;
           display: inline-block;
