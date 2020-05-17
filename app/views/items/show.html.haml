@@ -24,9 +24,7 @@
           %tr
             %th
               出品者
-              = @item.seller.nickname
             %td
-              ニックネーム
               = @item.seller.nickname
               %div.evaluation
                 %div
@@ -65,6 +63,11 @@
                 = @item.brand
               -else
                 = @item.brand.name
+          %tr
+            %th
+              サイズ
+            %td
+              = @item.size.name
           %tr
             %th
               商品の状態
